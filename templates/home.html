@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+{% block title %} welcome {{data.user.u_name}} {% endblock title%}
+
+{% block body %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<div id="loading" style="display:none;"></div>
+<style>
+    /* Add the loading overlay and spinner styles */
+    #loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        z-index: 9999; /* Ensures it's on top of other elements */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-3" id="watchlist_container">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="search_section">
+                <span class="material-symbols-outlined">search</span>
+                <input class="form-control" id="search-box" type="text" placeholder="Search Company"
+                    aria-label="Search" required>
+                <span class="material-symbols-outlined" type="submit" id="watchlist_add_btn" onclick="add_company_to_watchlist('{{data.user.id}}')">
+                    add_circle
+                </span>
+            </span>
+            <ol type="A" id="suggestions" class="suggestions-list"></ol> <!-- Moved outside of the span -->
+        </div>
+        <button id="watchlist_clear" type="button" onclick="clear_watchlist('{{data.user.id}}')">Clear watchlist</button>
+        <div class="row" id="watchlist_header">
+            <h2>Watchlist</h2>
+        </div>
+        <div class="row" id="watchlist">
+            <div id="watchlist_items">
+                {% if data.watchlist|length > 0 %}
+                {% for company in data.watchlist %}
+                <div class="watchlist-row">
+                    <div class="company-name">
+                        <p class="watchlist_c_symbol">{{ company.c_symbol }}</p>
+                    </div>
+                    <div class="share-price">
+                        <p class="watchlist_share_price">{{ company.share_price }}</p>
+                    </div>
+                    <button id="del_item" onclick="delete_company('{{company.c_symbol}}', '{{data.user.id}}')">
+                        <span class="material-symbols-outlined">
+                            delete
+                            </span>
+                    </button>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div>
+                    <p class="text-center">Add company</p> <!-- Message centered -->
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8" id="chart_section">
+        <!-- ====================== chart head section ======================== -->
+        <div class="row">
+            <div id="company_section">
+                <div>
+                    <div id="company_symbol" style="float: left;">Company Symbol</div>
+                    <div id="price_section">
+                        <div id="share_price">Shareprice</div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="row">
+                                    <div class="col">
+                                        <div id="change_num" style="float: left;">change_num</div>
+                                        <div id="change_percent">change</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+                    <div id="company_name">Company Name</div>
+                </div>
+                <div id="company_button">
+                    <button class="btn btn-success" type="button" onclick="section_selection('chart', document.getElementById('company_symbol').textContent)">Chart</button>
+                    <button class="btn btn-success" type="button" onclick="section_selection('fundamental', document.getElementById('company_symbol').textContent)">Fundamental</button>
+                    <button class="btn btn-success" type="button" onclick="section_selection('technical', document.getElementById('company_symbol').textContent)">Technical</button>
+                    <button class="btn btn-success" type="button" onclick="portfoilo_page('{{data.user.id}}')">Portfolio</button>
+                    <button class="btn btn-success" type="button" onclick="compare_page('{{data.user.id}}')">Compare</button>
+                    <!-- <button class="btn btn-success" type="button" onclick="section_selection('show_all', document.getElementById('company_symbol').textContent)">Show</button>
+                    <button class="btn btn-success" type="button" onclick="section_selection('hide_all', document.getElementById('company_symbol').textContent)">Hide</button> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================= Chart section ============================ -->
+        <div class="row">
+            <!-- ================ Technical chart section ============ -->
+            <div id="chart_container">
+                <div id="company_detailes_holder">
+                    <h1 style="margin-top: 20px;">Company Details</h1>
+                    <hr>
+                    <div class="row" id="company_detailes_bussiness_row">
+                        <h4>Company Bussiness</h4>
+                        <h5 style="text-align: left;" id="bussiness">company Bussiness</h5>
+                    </div>
+                    <div class="row" id="company_detailes_row">
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">Market Cap</h5>
+                            <h5 style="text-align: right;" id="marketcap">marketcap</h5>
+                        </div>
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">Industry</h5>
+                            <h5 style="text-align: right;" id="industry">industry</h5>
+                        </div>
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">Sector</h5>
+                            <h5 style="text-align: right;" id="sector">sector</h5>
+                        </div>
+                    </div> 
+                    <div class="row" id="company_detailes_row">
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">PE</h5>
+                            <h5 style="text-align: right;" id="pe">pe</h5>
+                        </div>
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">PB</h5>
+                            <h5 style="text-align: right;" id="pb">pb</h5>
+                        </div>
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">EPS</h5>
+                            <h5 style="text-align: right;" id="eps">eps</h5>
+                        </div>
+                    </div> 
+                    <div class="row" id="company_detailes_row">
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">Target Price</h5>
+                            <h5 style="text-align: right;" id="targetprice">targetprice</h5>
+                        </div>
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">52 Week (high/Low)</h5>
+                            <h5 style="text-align: right;" id="fifty2_high_low">fifty2_high_low</h5>
+                        </div>
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">Dividend Yield</h5>
+                            <h5 style="text-align: right;" id="dividentyield">dividentyield</h5>
+                        </div>
+                    </div> 
+                    <div class="row" id="company_detailes_row">
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">Book Value</h5>
+                            <h5 style="text-align: right;" id="bookvalue">bookvalue</h5>
+                        </div>
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">Earning Growth</h5>
+                            <h5 style="text-align: right;" id="earninggrowth">earninggrowth</h5>
+                        </div>
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">Revenue Growth</h5>
+                            <h5 style="text-align: right;" id="revenuegrowth">revenuegrowth</h5>
+                        </div>
+                    </div> 
+                    <div class="row" id="company_detailes_row">
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">Total Revenue</h5>
+                            <h5 style="text-align: right;" id="totalrevenue">totalrevenue</h5>
+                        </div>
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">Total Cash</h5>
+                            <h5 style="text-align: right;" id="totalcash">totalcash</h5>
+                        </div>
+                        <div class="col" id="detailes">
+                            <h5 style="float: left;">Total Debt</h5>
+                            <h5 style="text-align: right;" id="totaldebt">totaldebt</h5>
+                        </div>
+                    </div> 
+                </div>
+                <div class="row">
+                    <h1 style="margin-left: 10px; width: 77rem; padding-top: 15px; padding-bottom: 15px; border-top: 2px solid rgb(76, 72, 72); border-bottom: 2px solid rgb(76, 72, 72);">
+                        Share Price Chart
+                    </h1>
+                    <div id="chart" style="position: relative;">Press a company from watchlist</div>
+                </div>
+            </div>
+            <!-- ================ Fundametal chart section ============ -->
+            <div id="fundamental_section">
+                <h1>Company Fundamental Analysis</h1>
+                <hr>
+                <div class="row" id="revenue_chart_section">
+                    <!-- Revenue Chart -->
+                    <div class="col">
+                        <div id="revenue_chart_anual"></div>                
+                    </div>
+                    <!-- EPS And Profit Margin Chart -->
+                    <div class="col">
+                        <div id="eps_pm_chart_annual"></div>                
+                    </div>
+                </div>
+
+                <div class="row" id="assets_liability_section">
+                    <!-- Asset Liabilities chart -->
+                    <div class="col">   
+                        <div id="assets_liability_chart_annual"></div>                
+                    </div>
+                    <!-- Shareholding pattern -->
+                    <div class="col">    
+                        <div id="shareholding_chart"></div>                
+                    </div>
+                </div>
+
+                <div class="row" id="cashflow_section">
+                    <div class="col">
+                        <!-- Cashflow chart -->
+                        <div id="cashflow_chart_annual"></div>    
+                    </div>
+                </div>
+            </div>
+            <!-- ================ Technical chart section ============ -->
+            <div id="technical_section">
+                <h1>Company Technical Analysis</h1>
+                <hr>
+                <!-- Technical indicator signals -->
+                <div class="row">
+                    <div class="col" id="img_container">
+                        <h1>Overall Summary</h1>
+                        <hr>
+                        <img id="summary" alt="summary.img">
+                    </div>
+                    <div class="col" id="img_container">
+                        <h1>RSI Indication</h1>
+                        <hr>
+                        <img id="rsi" alt="rsi.img">
+                    </div>
+                    <div class="col" id="img_container">
+                        <h1>ADX Indication</h1>
+                        <hr>
+                        <img id="adx" alt="adx.img">
+                    </div>
+                </div>
+                <!-- Technical line chart -->
+                <div class="row">
+                    <div id="technical_chart" style="position: relative;">Press a company from watchlist</div>
+                </div>
+                <div class="row">
+                    <div class="col" id="img_container">
+                        <h1>Stock Momentum</h1>
+                        <hr>
+                        <img id="momentum" alt="momentumimg">
+                    </div>
+                    <div class="col" id="img_container">
+                        <h1>MACD Indication</h1>
+                        <hr>
+                        <img id="macd" alt="macd.img">
+                    </div>
+                    <div class="col" id="img_container">
+                        <h1>Bear Bull Power</h1>
+                        <hr>
+                        <img id="bbp" alt="bbp.img">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="empty_watchlist">
+            <h1>Add company to watchlist</h1>
+        </div>
+    </div>
+    <script>
+        const bull = "{{ url_for('static', filename='images/bull.jpg') }}";
+        const bear = "{{ url_for('static', filename='images/bear.jpg') }}";
+        const nutral = "{{ url_for('static', filename='images/nutral.jpg') }}";
+    </script>
+</div>
+{% endblock body %}

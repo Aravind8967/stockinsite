@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %} delete_account {% endblock title%}
+
+{% block body %}
+    <div class="delete">
+        <h1>Delete Profile</h1><br>
+        <h2>Username = {{data.user.u_name}}</h2>
+        <h2>Password = {{data.user.u_password}}</h2>
+    </div>
+    <button onclick="delete_profile('{{data.user.id}}')">delete account</button>
+{% endblock body %}
