@@ -40,6 +40,7 @@ $(document).ready(function () {
             }, 300);
         } else {
             document.getElementById('chart_container').style.display = 'none';
+            document.getElementById('company_section').style.display = 'none';
             document.getElementById('fundamental_section').style.display = 'none';
             document.getElementById('technical_section').style.display = 'none';
             document.getElementById('empty_watchlist').style.display = 'block';
@@ -180,7 +181,13 @@ async function add_company_to_watchlist(user_id) {
     try {
         let response = await fetch(url);
         if (response.ok) {
-            load_watchlist(user_id)
+            let data = await response.json();
+            if (data['watchlist']['status'] == 404){
+                alert(data['watchlist']['data']);
+            }
+            else{
+                load_watchlist(user_id);
+            }
         } 
         else {
             console.log("Unknown error");
@@ -315,7 +322,9 @@ async function tradingview_data(c_symbol) {
     }
 }
 
+
 export async function section_selection(section_name, company_symbol) {
+    let company_section = document.getElementById('company_section');
     let chart_container = document.getElementById('chart_container');
     let fundamental_section = document.getElementById('fundamental_section');
     let technical_section = document.getElementById('technical_section');
@@ -341,11 +350,12 @@ export async function section_selection(section_name, company_symbol) {
         if (section_name === 'chart') {
             try{
                 $('#loading').show();
+                company_section.style.display = 'block';
                 chart_container.style.display = 'block';
                 fundamental_section.style.display = 'none';
                 technical_section.style.display = 'none';
                 empty_watchlist.style.display = 'none'
-    
+                
                 // Fetch and display the chart data
                 let shares_arr = await share_price_arr(company_symbol, 'max');
                 chart_function(company_symbol, shares_arr);
@@ -354,8 +364,9 @@ export async function section_selection(section_name, company_symbol) {
                 $('#loading').hide();
             }
         }
-
+        
         if (section_name === 'fundamental') {
+            company_section.style.display = 'block';
             chart_container.style.display = 'none';
             technical_section.style.display = 'none';
             fundamental_section.style.display = 'block';
@@ -363,8 +374,9 @@ export async function section_selection(section_name, company_symbol) {
             // Fetch and display the fundamental data
             finance_charts(company_symbol);
         }
-
+        
         if (section_name === 'technical') {
+            company_section.style.display = 'block';
             chart_container.style.display = 'none';
             fundamental_section.style.display = 'none';
             technical_section.style.display = 'block';
@@ -394,7 +406,6 @@ export async function section_selection(section_name, company_symbol) {
         loadingSpinner.style.display = 'none';
     }
 }
-
 
 // Annual and half year button operations
 function toggleButtons_revenue(selected) {

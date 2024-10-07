@@ -197,9 +197,12 @@ def add_company_to_watchlist(user_id, company_name):
         'share_price': analysis_company.share_price(),
         'c_symbol':company_data['c_symbol']
     }
-    watch.add_company(input_data)
-    data = watch.get_data_by_userID(user_id)['data']
-    return jsonify({"watchlist":data})
+    insert_company = watch.add_company(input_data)
+    if insert_company['status'] == 404:
+        return jsonify({"watchlist":insert_company})
+    else:
+        data = watch.get_data_by_userID(user_id)['data']
+        return jsonify({"watchlist":data})
 
 @app.route('/<int:user_id>/<c_symbol>/delete_company', methods=['DELETE'])
 def remove_company_from_watchlist(user_id, c_symbol):
