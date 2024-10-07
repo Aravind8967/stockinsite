@@ -243,7 +243,6 @@ async function compare_btn(u_id) {
     try{
         $('#loading').show();
         let companies_data = await get_c_details(u_id);
-        console.log(companies_data);
         let generate_chart = await generate_charts(companies_data);
     }
     finally{

@@ -28,10 +28,6 @@ $(document).ready(function() {
         let company_symbol = $(this).find('.company-name p').text();
 
         section_selection('chart', company_symbol)
-
-        // if(data === 0) {
-        //     console.log("Unknown error");
-        // }
     });
 });
 
@@ -59,7 +55,7 @@ export async function get_c_data(c_symbol) {
     
     if (response.ok) {
         let data = await response.json();
-        console.log(data)
+
         // Select elements
         let c_name = document.getElementById('company_name');
         let c_symbol_elem = document.getElementById('company_symbol');

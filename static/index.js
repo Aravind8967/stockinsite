@@ -31,7 +31,6 @@ $(document).ready(function () {
         $('#loading').show();
         if ($('#watchlist_items .watchlist-row').length > 0) {
             let firstCompany = $('#watchlist_items .watchlist-row:first .company-name p').text();
-            console.log("Auto-selecting the first company: ", firstCompany);
             // Ensure a slight delay before fetching data to allow page components to settle
             setTimeout(() => {
                 if (firstCompany && firstCompany !== undefined) {
@@ -40,7 +39,6 @@ $(document).ready(function () {
                 }
             }, 300);
         } else {
-            console.log("No companies in watchlist. Displaying empty state.");
             document.getElementById('chart_container').style.display = 'none';
             document.getElementById('fundamental_section').style.display = 'none';
             document.getElementById('technical_section').style.display = 'none';
@@ -63,8 +61,6 @@ $(document).ready(function () {
 
             // Show the loading spinner and block user input
             $('#loading').show();
-            console.log("Fetching data for company symbol: ", company_symbol);
-
             // Reset styles and highlight selected
             $('.watchlist-row').css({'border': 'none'})
             // Simulate a delay to make sure all data is properly loaded before the next step
@@ -74,7 +70,6 @@ $(document).ready(function () {
 
         } finally {
             $(`.watchlist-row:contains(${company_symbol})`).css({'border': '2px solid white', 'border-radius': '10px'}); 
-            console.log('border added');
             $('#loading').hide();
             isLoading = false;  // Reset loading state
         }
@@ -83,7 +78,6 @@ $(document).ready(function () {
     function initializeWatchlistClickHandler() {
         $('#watchlist_items').off('click', '.watchlist-row').on('click', '.watchlist-row', async function () {
             if (isLoading) {
-                console.log("Still loading, blocking additional clicks");
                 return;  // Prevent multiple requests if loading
             }
 
@@ -218,7 +212,6 @@ async function clear_watchlist(user_id) {
 }
 
 async function delete_company(c_symbol, user_id) {
-    console.log("you clicked del button of : ",c_symbol, "user id : ", user_id)
     let url = `http://127.0.0.1:300/${user_id}/${c_symbol}/delete_company`
     let responce = await fetch(url, {method:'DELETE'})
     if (responce.ok){
@@ -243,7 +236,6 @@ async function share_price(c_symbol) {
 }
 
 async function load_watchlist(user_id){
-    console.log(user_id);
     let url = `/load_watchlist/${user_id}`
     let responce = await fetch(url, {method:'GET'})
     if (responce.ok){
@@ -329,8 +321,6 @@ export async function section_selection(section_name, company_symbol) {
     let technical_section = document.getElementById('technical_section');
     let empty_watchlist = document.getElementById('empty_watchlist');
     let loadingSpinner = document.getElementById('loading'); // Assume this is your loading spinner element
-
-    console.log(section_name);
 
     try {
         // Show the loading spinner at the start of each section change

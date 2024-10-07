@@ -80,6 +80,7 @@ button:hover {
     background-color: white;
 }
 
+
 /* Styling for the labels */
 label {
     font-weight: bold;
@@ -100,6 +101,7 @@ label {
 }
 
 /* ========================== Holding section ========================= */
+
 #holding{
     margin-left: 60px;
     width: 93%;   

@@ -77,7 +77,6 @@ export function technical_indicator(indicator_data){
 }
 
 export function technical_chart(c_name, share_price_arr, line_data){
-    console.log({'data from chart.js' : {'share' : share_price_arr, 'line_data' : line_data}})
     const chartOptions = {
         layout: {
             textColor: 'white',
@@ -363,7 +362,6 @@ export async function finance_charts(company_symbol){
     else{
         let url = `/get/${company_symbol}/yfinance_data`;
         let responce = await fetch(url, {method:'GET'});
-        console.log(company_symbol);
         if (responce.ok){
             let yfinance_data = await responce.json();
             let dates = yfinance_data.dates;
@@ -533,8 +531,6 @@ export function cashflow(company_symbol, dates, cash_equivalents, free_cashflow,
             'opacity: 0.7'
         ]);
     }
-
-    console.log(data);
     let options = {
         title: `${company_symbol} Cashflow`,
         titleTextStyle: {

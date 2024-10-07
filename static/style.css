@@ -16,8 +16,6 @@ body{
 /* ====================== Nav bar ========================= */
 
 /* ===================================================================================================== */
-
-
 /* Common styles for suggestion boxes */
 .suggestions-list {
     position: absolute; /* Position absolute to ensure it appears below the input */
@@ -428,8 +426,6 @@ button:hover{
 #watchlist_container #watchlist_clear:hover{
     background-color: gray;
 }
-
-
 
 /* ================= company_section =============== */
 
