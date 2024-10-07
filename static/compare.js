@@ -26,7 +26,7 @@ async function add_company_to_compare(u_id) {
             if(response.ok){
                 let recived_data = await response.json()
                 if(recived_data['status'] == 404){
-                    alert('company already present in compare list')
+                    alert(recived_data['data'])
                 }
                 else{
                     load_compare(u_id);

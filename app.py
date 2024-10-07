@@ -189,20 +189,23 @@ def delete_alldata_by_user(u_id):
 
 @app.route('/home/<int:user_id>/<company_name>/add_company')
 def add_company_to_watchlist(user_id, company_name):
-    company_data = company.search_by_name(company_name)['data'][0]
-    analysis_company = analysis(company_data['c_symbol'])
-    input_data = {
-        'u_id':user_id,
-        'c_name':company_data['c_name'],
-        'share_price': analysis_company.share_price(),
-        'c_symbol':company_data['c_symbol']
-    }
-    insert_company = watch.add_company(input_data)
-    if insert_company['status'] == 404:
-        return jsonify({"watchlist":insert_company})
+    company_data = company.search_by_name(company_name)
+    if company_data['status'] == 404:
+        return jsonify({"watchlist":company_data})
     else:
-        data = watch.get_data_by_userID(user_id)['data']
-        return jsonify({"watchlist":data})
+        analysis_company = analysis(company_data['c_symbol'])
+        input_data = {
+            'u_id':user_id,
+            'c_name':company_data['data'][0]['c_name'],
+            'share_price': analysis_company.share_price(),
+            'c_symbol':company_data['data'][0]['c_symbol']
+        }
+        insert_company = watch.add_company(input_data)
+        if insert_company['status'] == 404:
+            return jsonify({"watchlist":insert_company})
+        else:
+            data = watch.get_data_by_userID(user_id)['data']
+            return jsonify({"watchlist":data})
 
 @app.route('/<int:user_id>/<c_symbol>/delete_company', methods=['DELETE'])
 def remove_company_from_watchlist(user_id, c_symbol):
@@ -240,10 +243,12 @@ def portfolio_page(u_id):
 @app.route('/<int:u_id>/add_to_portfolio', methods=['POST'])
 def add_company_to_portfolio(u_id):
     frountend_data = request.get_json()
-    c_symbol = company.search_by_name(frountend_data['c_name'])['data'][0]['c_symbol']
+    c_symbol = company.search_by_name(frountend_data['c_name'])
+    if c_symbol['status'] == 404:
+        return jsonify(c_symbol)    
     insert_data = {
         'u_id' : u_id,
-        'c_symbol' : c_symbol,
+        'c_symbol' : c_symbol['data'][0]['c_symbol'],
         'quantity' : frountend_data['quantity'],
         'bought_price' : frountend_data['bought_price']
     }
@@ -301,16 +306,15 @@ def compare_page(u_id):
 @app.route('/<int:u_id>/add_to_compare', methods=['POST'])
 def add_company_to_compare(u_id):
     frountend_data = request.get_json()
-    c_symbol = company.search_by_name(frountend_data['c_name'])['data'][0]['c_symbol']
+    c_symbol = company.search_by_name(frountend_data['c_name'])
+    print(c_symbol)
+    if c_symbol['status'] == 404:
+        return jsonify(c_symbol)
     insert_data = {
         'u_id' : u_id,
-        'c_symbol' : c_symbol
+        'c_symbol' : c_symbol['data'][0]['c_symbol']
     }
     insert_data_to_portfolio = compare_company.add_company(insert_data)
-    val = {
-        'status' : 'data added sussecfully',
-        'inserted_data': insert_data_to_portfolio
-    }
     return jsonify(insert_data_to_portfolio)
 
 @app.route('/<int:u_id>/load_compare', methods=['GET'])

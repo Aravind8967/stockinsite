@@ -32,6 +32,13 @@ class companies:
             cursor = con.cursor(dictionary=True)
             cursor.execute(q, (c_name, ))
             data = cursor.fetchall()
-            return {'status':200, 'data':data}
+            if len(data) == 0:
+                return {'status':404, 'data':'company not found'}
+            else:
+                return {'status':200, 'data':data}
         else:
-            return {"status":db["status"], "data":db["data"]}
+            return {"status":404, "data":'database connection error'}
+
+if __name__ == '__main__':
+    c = companies()
+    print(c.search_by_name('dsa'))
