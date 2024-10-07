@@ -3,6 +3,5 @@ stockinsite
 stockinsite.pub
 .env
 __pycache__
-static
 db_files
 analyses

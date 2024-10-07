@@ -1,0 +1,141 @@
+hr{
+    height: 2px;
+    background-color: rgb(196, 196, 196);
+    border: 1px solid rgb(196, 196, 196);
+}
+
+h4{
+    text-align: center;
+    margin: 10px;
+}
+
+/* ==================== chart container (line chart section)  ===============*/
+#chart_section{
+    margin-top: 3%;
+    margin-left: 1%;
+}
+#chart_section .row #chart_container, #fundamental_section, #technical_section{
+    margin-top: 1%;
+    background-color: rgb(26, 25, 25);
+    height: auto;
+    border: 2px solid white;
+    border-radius: 20px;
+}
+
+#chart_container #company_detailes_holder #company_detailes_row #detailes{
+    margin: 5px 10px; 
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: rgb(31, 41, 49);
+}
+#chart_container #company_detailes_holder #company_detailes_bussiness_row{
+    margin: 5px 10px; 
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: rgb(31, 41, 49);
+}
+
+#chart_container #company_detailes_holder #company_detailes_row #detailes h5{
+margin-top: 7px;
+}
+
+#chart_container #company_detailes_holder{
+    margin-top: 20px; 
+    margin-bottom: 40px; 
+}
+
+#chart{
+    margin-left: 20px;
+    border: 1px solid white;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 75em; 
+    height: 35em;
+    margin-bottom: 20px;
+}
+
+/* ==================== fundamental_section ========================*/
+
+#fundamental_section #revenue_chart_anual{
+    width: 35rem;
+    height: 20rem;
+    margin-bottom: 30px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+#fundamental_section #eps_pm_chart_annual{
+    width: 35rem;
+    height: 20rem;
+    margin-bottom: 30px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+#fundamental_section #assets_liability_chart_annual{
+    width: 35rem;
+    height: 20rem;
+    margin-bottom: 30px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+
+#fundamental_section #shareholding_chart{
+    width: 35rem;
+    height: 20rem;
+    margin-bottom: 30px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+#fundamental_section #cashflow_chart_annual{
+    width: 35rem;
+    height: 20rem;
+    margin-bottom: 30px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+/* =================== technical chart section ================================ */
+#technical_section #technical_chart{
+    border: 1px solid white;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-left: 20px;
+    width: 75em; 
+    height: 35em;
+    margin-bottom: 20px;
+
+}
+
+#technical_section #img_container{
+    border: 2px solid white;
+    height: 23rem;
+    margin: 30px;
+    border-radius: 20px;
+}
+
+#technical_section #img_container img{
+    height: 15rem;
+    width: 20rem;
+    object-fit: contain; /* Ensure the image fits without stretching */
+    display: block; /* Ensures the image takes up only the required space */
+}
+
+#technical_section #img_container h1{
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+#test_color{
+    color: rgb(50, 70, 184, 0.2); /* Revenue bar color */
+    color: rgb(62, 178, 36); /* netincome bar color */
+    color: rgb(255, 255, 0); /* profitability line color */
+    color: rgb(165, 14, 14); /* debt bar color */
+    color: rgb(255, 0, 0); /* assets/debt line color */
+    color: rgb(0, 255, 204); /* volume bar color */
+}
+

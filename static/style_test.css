@@ -1,0 +1,15 @@
+#more {
+    display: none;
+}
+
+#toggle-btn {
+    background-color: transparent;
+    color: blue;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#toggle-btn:hover {
+    text-decoration: underline;
+}
