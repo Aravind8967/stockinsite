@@ -28,7 +28,7 @@ class companies:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "SELECT * FROM COMPANIES WHERE C_NAME = %s"
+            q = "SELECT * FROM companies WHERE c_name = %s"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q, (c_name, ))
             data = cursor.fetchall()
@@ -41,4 +41,4 @@ class companies:
 
 if __name__ == '__main__':
     c = companies()
-    print(c.search_by_name('dsa'))
+    print(c.search_by_name('Suyog Telematics Ltd'))

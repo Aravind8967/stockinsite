@@ -28,7 +28,7 @@ class watchlist:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "SELECT * FROM WATCHLIST WHERE C_NAME = %s AND U_ID = %s"
+            q = "SELECT * FROM watchlist WHERE c_name = %s AND u_id = %s"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q, (c_name, u_id))
             data = cursor.fetchall()
@@ -41,7 +41,7 @@ class watchlist:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "SELECT * FROM WATCHLIST"
+            q = "SELECT * FROM watchlist"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q)
             data = cursor.fetchall()
@@ -55,7 +55,7 @@ class watchlist:
             if db['status'] == 200:
                 con = db['connection']
                 if not self.is_present(data['c_name'], data['u_id']):
-                    q = "INSERT INTO WATCHLIST (C_NAME, U_ID, share_price, c_symbol) VALUES (%s, %s,%s, %s)"
+                    q = "INSERT INTO watchlist (c_name, u_id, share_price, c_symbol) VALUES (%s, %s,%s, %s)"
                     cursor = con.cursor(dictionary=True)
                     cursor.execute(q, (data['c_name'], data['u_id'], data['share_price'],data['c_symbol']))
                     db['connection'].commit()
@@ -72,7 +72,7 @@ class watchlist:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "DELETE FROM WATCHLIST WHERE C_SYMBOL = %s AND U_ID = %s"
+            q = "DELETE FROM watchlist WHERE c_symbol = %s AND u_id = %s"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q, (data['c_symbol'], data['user_id']))
             db['connection'].commit()
@@ -85,13 +85,13 @@ class watchlist:
         try:
             if db['status'] == 200:
                 con = db['connection']
-                q = "TRUNCATE TABLE WATCHLIST"
+                q = "TRUNCATE TABLE watchlist"
                 cursor = con.cursor(dictionary=True)
                 cursor.execute(q)
                 con.commit()
-                return {'status':200, 'data':'Watchlist cleared successfully'}
+                return {'status':200, 'data':'watchlist cleared successfully'}
         except:
-                return {'status':404, 'data':'Watchlist clear error'}
+                return {'status':404, 'data':'watchlist clear error'}
         else:
             return {'status':404, 'data':'database connection error'}
 
@@ -99,7 +99,7 @@ class watchlist:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "SELECT * FROM WATCHLIST WHERE U_ID = %s"
+            q = "SELECT * FROM watchlist WHERE u_id = %s"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q,(u_id,))
             data = cursor.fetchall()
@@ -111,7 +111,7 @@ class watchlist:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "SELECT * FROM WATCHLIST WHERE C_NAME = %s AND U_ID = %s"
+            q = "SELECT * FROM watchlist WHERE c_name = %s AND u_id = %s"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q,(c_name,u_id))
             data = cursor.fetchall()
@@ -124,11 +124,11 @@ class watchlist:
         try:
             if db['status'] == 200:
                 con = db['connection']
-                q = "UPDATE WATCHLIST SET U_ID = %s WHERE C_NAME = %s"
+                q = "UPDATE watchlist SET u_id = %s WHERE c_name = %s"
                 cursor = con.cursor(dictionary=True)
                 cursor.execute(q, (id, name))
                 con.commit()
-                return {'status':200, 'data':'Watchlist updated successfully'}
+                return {'status':200, 'data':'watchlist updated successfully'}
         except:
                 return {'status':404, 'data':'company name not found'}
         else:
@@ -139,11 +139,11 @@ class watchlist:
         try:
             if db['status'] == 200:
                 con = db['connection']
-                q = "DELETE FROM WATCHLIST WHERE U_ID = %s"
+                q = "DELETE FROM watchlist WHERE u_id = %s"
                 cursor = con.cursor(dictionary=True)
                 cursor.execute(q, (u_id,))
                 con.commit()
-                return {'status':200, 'data':'Watchlist cleared successfully'}
+                return {'status':200, 'data':'watchlist cleared successfully'}
         except:
                 return {'status':404, 'data':'something went wrong'}
         else:

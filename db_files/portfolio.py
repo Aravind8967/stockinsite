@@ -29,7 +29,7 @@ class portfolio:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "SELECT * FROM PORTFOLIO"
+            q = "SELECT * FROM portfolio"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q)
             data = cursor.fetchall()
@@ -41,7 +41,7 @@ class portfolio:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "SELECT * FROM PORTFOLIO WHERE C_SYMBOL = %s AND U_ID = %s"
+            q = "SELECT * FROM portfolio WHERE c_symbol = %s AND u_id = %s"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q, (c_symbol, u_id))
             data = cursor.fetchall()
@@ -56,13 +56,13 @@ class portfolio:
             if db['status'] == 200:
                 con = db['connection']
                 if not self.is_present(data['c_symbol'], data['u_id']):
-                    q = "INSERT INTO PORTFOLIO (U_ID, C_SYMBOL, QUANTITY, BOUGHT_PRICE) VALUES (%s, %s,%s, %s)"
+                    q = "INSERT INTO portfolio (u_id, c_symbol, quantity, bought_price) VALUES (%s, %s,%s, %s)"
                     cursor = con.cursor(dictionary=True)
                     cursor.execute(q, (data['u_id'], data['c_symbol'], data['quantity'], data['bought_price']))
                     db['connection'].commit()
                     return {'status':200, 'data':'company added succesfully'}
                 else:
-                    return {'status':404, 'data':'company already present in Portfolio'}
+                    return {'status':404, 'data':'company already present in portfolio'}
             else:
                 return {'status':404, 'data':'database connection error'}
         except:
@@ -72,7 +72,7 @@ class portfolio:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "DELETE FROM PORTFOLIO WHERE C_SYMBOL = %s AND U_ID = %s"
+            q = "DELETE FROM portfolio WHERE c_symbol = %s AND u_id = %s"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q, (data['c_symbol'], data['u_id']))
             db['connection'].commit()
@@ -84,7 +84,7 @@ class portfolio:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "SELECT * FROM PORTFOLIO WHERE U_ID = %s"
+            q = "SELECT * FROM portfolio WHERE u_id = %s"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q,(u_id,))
             data = cursor.fetchall()
@@ -97,7 +97,7 @@ class portfolio:
         if db["status"] == 200:
             con = db["connection"]
             cursor = con.cursor()
-            q = "UPDATE PORTFOLIO SET QUANTITY = %s, BOUGHT_PRICE = %s WHERE U_ID = %s AND C_SYMBOL = %s"
+            q = "UPDATE portfolio SET quantity = %s, bought_price = %s WHERE u_id = %s AND c_symbol = %s"
             cursor.execute(q, (data['quantity'], data['bought_price'], data['u_id'], data['c_symbol']))
             con.commit()
             return {'status':200, 'data':'Company data updated'}
@@ -111,11 +111,11 @@ class portfolio:
         try:
             if db['status'] == 200:
                 con = db['connection']
-                q = "DELETE FROM PORTFOLIO WHERE U_ID = %s"
+                q = "DELETE FROM portfolio WHERE u_id = %s"
                 cursor = con.cursor(dictionary=True)
                 cursor.execute(q, (u_id,))
                 con.commit()
-                return {'status':200, 'data':'Portfolio cleared successfully'}
+                return {'status':200, 'data':'portfolio cleared successfully'}
         except:
                 return {'status':404, 'data':'something went wrong'}
         else:
@@ -126,13 +126,13 @@ class portfolio:
         try:
             if db['status'] == 200:
                 con = db['connection']
-                q = "TRUNCATE TABLE PORTFOLIO"
+                q = "TRUNCATE TABLE portfolio"
                 cursor = con.cursor(dictionary=True)
                 cursor.execute(q)
                 con.commit()
-                return {'status':200, 'data':'Portfolio cleared successfully'}
+                return {'status':200, 'data':'portfolio cleared successfully'}
         except:
-                return {'status':404, 'data':'Portfolio clear error'}
+                return {'status':404, 'data':'portfolio clear error'}
         else:
             return {'status':404, 'data':'database connection error'}
 

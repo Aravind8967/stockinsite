@@ -29,7 +29,7 @@ class Database:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "SELECT * FROM USERS"
+            q = "SELECT * FROM users"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q)
             data = cursor.fetchall()
@@ -42,7 +42,7 @@ class Database:
         if db['status'] == 200:
             try:
                 con = db['connection']
-                q = "SELECT * FROM USERS WHERE ID = %s;"
+                q = "SELECT * FROM users WHERE id = %s;"
                 cursor = con.cursor(dictionary=True)
                 cursor.execute(q, (id,))
                 data = cursor.fetchall()
@@ -60,7 +60,7 @@ class Database:
         if db['status'] == 200:
             try:
                 con = db['connection']
-                q = "SELECT * FROM USERS WHERE U_NAME = %s;"
+                q = "SELECT * FROM users WHERE u_name = %s;"
                 cursor = con.cursor(dictionary=True)
                 cursor.execute(q, (name,))
                 data = cursor.fetchall()
@@ -78,7 +78,7 @@ class Database:
         if db['status'] == 200:
             try:
                 con = db['connection']
-                q = "INSERT INTO USERS (U_NAME, U_PASSWORD) VALUES (%s, %s);"
+                q = "INSERT INTO users (u_name, u_password) VALUES (%s, %s);"
                 cursor = con.cursor(dictionary=True)
                 cursor.execute(q, (data['u_name'],data['u_password']))
                 db['connection'].commit()
@@ -112,7 +112,7 @@ class Database:
         if db['status'] == 200:
             con = db['connection']
             cursor = con.cursor()
-            q = "DELETE FROM USERS WHERE ID = %s"
+            q = "DELETE FROM USERS WHERE id = %s"
             cursor.execute(q, (id,))
             con.commit()
             return {'status':200, 'data':'User account deleted'}
@@ -124,7 +124,7 @@ class Database:
         if db["status"] == 200:
             con = db["connection"]
             cursor = con.cursor()
-            q = "UPDATE USERS SET U_NAME = %s, U_PASSWORD = %s WHERE ID = %s"
+            q = "UPDATE USERS SET u_name = %s, u_password = %s WHERE id = %s"
             cursor.execute(q, (u_name, u_password, id))
             con.commit()
             return {'status':200, 'data':'User account updated'}
@@ -146,8 +146,7 @@ class Database:
 if __name__ == '__main__':
     db = Database()
     data = {
-        'u_name':'Varun',
-        'u_password':'Varu.8967'
+        'u_name':'Aravind',
+        'u_password':'1234'
     }
-    # print(db.delete_user("Aravind"))
-    print(db.delete_user(8))
+    print(db.get_user('Aravind'))

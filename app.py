@@ -193,7 +193,7 @@ def add_company_to_watchlist(user_id, company_name):
     if company_data['status'] == 404:
         return jsonify({"watchlist":company_data})
     else:
-        analysis_company = analysis(company_data['c_symbol'])
+        analysis_company = analysis(company_data['data'][0]['c_symbol'])
         input_data = {
             'u_id':user_id,
             'c_name':company_data['data'][0]['c_name'],

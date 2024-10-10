@@ -287,6 +287,38 @@ function portfoilo_charts() {
     total_holdings(data);
     current_portfolio(data);
     portfolio_contribution(data);
+    investment_price_section(data);
+}
+
+function investment_price_section(data){
+    let total_investment_tag = document.getElementById('total_investment');
+    let current_value_tag = document.getElementById('current_value');
+
+    let total_investment = 0;
+    let current_value = 0;
+    let difference = 0;
+    let profit_percent = 0;
+
+    for(let company_data of data){
+        console.log({'investment':company_data['investment'], 'current_val':company_data['current_investment']})
+        // total_investment += company_datadata['investment'];
+        // current_value += data['current_investment'];
+    }
+    // difference = current_value - total_investment;
+    // profit_percent = (((current_value*100) / total_investment)-100)/100;
+    // console.log({'total_investment':total_investment, 'difference' : difference, 'profit_percent' : profit_percent});
+    // if (difference < 0){
+    //     console.log({'total_investment' : total_investment.textContent, 'current_value' : current_value.textContent, 'difference' : difference.textContent});
+    //     total_investment_tag.textContent = `${total_investment}`;
+    //     current_value_tag.textContent = `${current_value}   ${difference}  (- ${profit_percent}%)`;
+    //     current_value_tag.style.color = 'red'
+    // }
+    // else{
+    //     console.log({'total_investment' : total_investment.textContent, 'current_value' : current_value.textContent, 'difference' : difference.textContent});
+    //     total_investment_tag.textContent = `${total_investment}`;
+    //     current_value_tag.textContent = `${current_value}   ${difference}  (+ ${profit_percent}%)`;
+    //     current_value_tag.style.color = 'green';
+    // }
 }
 
 function total_holdings(input_data){

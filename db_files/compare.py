@@ -28,7 +28,7 @@ class compare:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "SELECT * FROM COMPARE WHERE C_SYMBOL = %s AND U_ID = %s"
+            q = "SELECT * FROM compare WHERE c_symbol = %s AND u_id = %s"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q, (c_symbol, u_id))
             data = cursor.fetchall()
@@ -41,7 +41,7 @@ class compare:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "SELECT * FROM COMPARE"
+            q = "SELECT * FROM compare"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q)
             data = cursor.fetchall()
@@ -53,7 +53,7 @@ class compare:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "SELECT * FROM COMPARE WHERE U_ID = %s"
+            q = "SELECT * FROM compare WHERE u_id = %s"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q,(u_id,))
             data = cursor.fetchall()
@@ -67,13 +67,13 @@ class compare:
             if db['status'] == 200:
                 con = db['connection']
                 if not self.is_present(data['c_symbol'], data['u_id']):
-                    q = "INSERT INTO COMPARE (U_ID, C_SYMBOL) VALUES (%s, %s)"
+                    q = "INSERT INTO compare (u_id, c_symbol) VALUES (%s, %s)"
                     cursor = con.cursor(dictionary=True)
                     cursor.execute(q, (data['u_id'], data['c_symbol']))
                     db['connection'].commit()
                     return {'status':200, 'data':'company added succesfully'}
                 else:
-                    return {'status':404, 'data':'company already present in Compare'}
+                    return {'status':404, 'data':'company already present in compare'}
             else:
                 return {'status':404, 'data':'database connection error'}
         except:
@@ -83,7 +83,7 @@ class compare:
         db = self.db_connection()
         if db['status'] == 200:
             con = db['connection']
-            q = "DELETE FROM COMPARE WHERE C_SYMBOL = %s AND U_ID = %s"
+            q = "DELETE FROM compare WHERE c_symbol = %s AND u_id = %s"
             cursor = con.cursor(dictionary=True)
             cursor.execute(q, (data['c_symbol'], data['u_id']))
             db['connection'].commit()
@@ -96,11 +96,11 @@ class compare:
         try:
             if db['status'] == 200:
                 con = db['connection']
-                q = "DELETE FROM COMPARE WHERE U_ID = %s"
+                q = "DELETE FROM compare WHERE u_id = %s"
                 cursor = con.cursor(dictionary=True)
                 cursor.execute(q, (u_id,))
                 con.commit()
-                return {'status':200, 'data':'Compare cleared successfully'}
+                return {'status':200, 'data':'compare cleared successfully'}
         except:
                 return {'status':404, 'data':'something went wrong'}
         else:
@@ -111,13 +111,13 @@ class compare:
         try:
             if db['status'] == 200:
                 con = db['connection']
-                q = "TRUNCATE TABLE COMPARE"
+                q = "TRUNCATE TABLE compare"
                 cursor = con.cursor(dictionary=True)
                 cursor.execute(q)
                 con.commit()
-                return {'status':200, 'data':'Compare cleared successfully'}
+                return {'status':200, 'data':'compare cleared successfully'}
         except:
-                return {'status':404, 'data':'Compare clear error'}
+                return {'status':404, 'data':'compare clear error'}
         else:
             return {'status':404, 'data':'database connection error'}
 
