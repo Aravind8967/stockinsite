@@ -238,12 +238,25 @@ label {
     font-size: 40px;
 }
 
+#holding_chart_section #investment_price_section {
+    margin-left: 20px;
+    border: 1px solid white;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+#holding_chart_section #investment_price_section h3{
+    margin-top: 15px;
+}
+
 #holding_chart_section #investment_price_section p{
-    font-size: 30px;
+    font-size: 20px;
 }
 
 
+
 #holding_chart_section #holdings_bought_chart, #holdings_current_chart{
+    margin-left: 20px;
     border: 1px solid white;
     border-radius: 20px;
     width: 35rem;

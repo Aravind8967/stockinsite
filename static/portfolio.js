@@ -290,42 +290,68 @@ function portfoilo_charts() {
     investment_price_section(data);
 }
 
-function investment_price_section(data){
+function formatToIndianNumber(num) {
+    let numStr = num.toString().split('.');
+
+    let lastThree = numStr[0].slice(-3);
+    let otherNumbers = numStr[0].slice(0, -3);
+
+    if (otherNumbers !== '') {
+        lastThree = ',' + lastThree;
+    }
+
+    let formattedNumber = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + lastThree;
+
+    if (numStr[1]) {
+        formattedNumber += '.' + numStr[1];
+    }
+
+    return formattedNumber;
+}
+
+function investment_price_section(data) {
     let total_investment_tag = document.getElementById('total_investment');
     let current_value_tag = document.getElementById('current_value');
-
+    
     let total_investment = 0;
     let current_value = 0;
     let difference = 0;
     let profit_percent = 0;
 
-    for(let company_data of data){
-        console.log({'investment':company_data['investment'], 'current_val':company_data['current_investment']})
-        // total_investment += company_datadata['investment'];
-        // current_value += data['current_investment'];
+    for (let company_data of data) {
+        if (company_data !== undefined) {
+            total_investment += company_data['investment'];
+            current_value += company_data['current_investment'];
+        } else {
+            return;
+        }
     }
-    // difference = current_value - total_investment;
-    // profit_percent = (((current_value*100) / total_investment)-100)/100;
-    // console.log({'total_investment':total_investment, 'difference' : difference, 'profit_percent' : profit_percent});
-    // if (difference < 0){
-    //     console.log({'total_investment' : total_investment.textContent, 'current_value' : current_value.textContent, 'difference' : difference.textContent});
-    //     total_investment_tag.textContent = `${total_investment}`;
-    //     current_value_tag.textContent = `${current_value}   ${difference}  (- ${profit_percent}%)`;
-    //     current_value_tag.style.color = 'red'
-    // }
-    // else{
-    //     console.log({'total_investment' : total_investment.textContent, 'current_value' : current_value.textContent, 'difference' : difference.textContent});
-    //     total_investment_tag.textContent = `${total_investment}`;
-    //     current_value_tag.textContent = `${current_value}   ${difference}  (+ ${profit_percent}%)`;
-    //     current_value_tag.style.color = 'green';
-    // }
+
+    difference = current_value - total_investment;
+    profit_percent = (((current_value * 100) / total_investment) - 100);
+
+    // Format the values using the Indian format function
+    let formatted_total_investment = formatToIndianNumber(total_investment.toFixed(2));
+    let formatted_current_value = formatToIndianNumber(current_value.toFixed(2));
+    let formatted_difference = formatToIndianNumber(difference.toFixed(2));
+
+    if (difference < 0) {
+        total_investment_tag.textContent = `₹ ${formatted_total_investment}`;
+        current_value_tag.textContent = `₹ ${formatted_current_value}  [ ${formatted_difference}  ( ${profit_percent.toFixed(2)}% ) ]`;
+        current_value_tag.style.color = 'rgb(255, 0, 0)'; // Red color for loss
+    } else {
+        total_investment_tag.textContent = `₹ ${formatted_total_investment}`;
+        current_value_tag.textContent = `₹ ${formatted_current_value}  [ ${formatted_difference}  ( + ${profit_percent.toFixed(2)}% ) ]`;
+        current_value_tag.style.color = 'rgb(0, 255, 0)'; // Green color for profit
+    }
+
+    return;
 }
 
 function total_holdings(input_data){
     let data = new google.visualization.DataTable();
     data.addColumn('string', 'Company');
     data.addColumn('number', 'Investment');
-    let test = []
     for(let holding_data of input_data){
         data.addRow([
             holding_data.symbol,
@@ -372,7 +398,7 @@ function current_portfolio (input_data) {
     };
 
     let options = {
-        title: `Total Investment`,
+        title: `Current Prortfolio`,
         titleTextStyle: {
             color: 'white',  // Change the axis title color (red here)
             fontSize: 15
