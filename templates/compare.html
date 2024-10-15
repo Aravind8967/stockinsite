@@ -31,7 +31,7 @@
                 <input type="text" id="portfolio_search-box" required autocomplete="off" placeholder="Enter company name">
                 
                 <button type="button" id="portfoilo_add_btn" onclick="add_company_to_compare('{{data.user.id}}')">Add</button>
-                <button class="btn btn-success" type="button" onclick="portfoilo_page('{{data.user.id}}')">Portfolio</button>
+                <button class="btn btn-success" type="button" onclick="portfoilo_page('{{data.user.id}}')" style="margin-left: 80px;">Portfolio</button>
                 <ol id="portfolio_suggestions" class="portfolio-suggestion-box"></ol>
             </form>            
         </div>
@@ -81,14 +81,14 @@
             <h1 id="comparison_heading">Comparison Charts</h1>
             <hr>
             <div class="row">
-                <div class="col">
+                <div class="col-sm-6">
                     <div>
                         <h1>Profit growth Comparison Chart</h1>
                         <hr>
                         <div id="revenue_compare_chart"></div>                        
                     </div> 
                 </div>
-                <div class="col">
+                <div class="col-sm-6">
                     <div>
                         <h1>EPS Comparison Chart</h1>
                         <hr>
@@ -98,14 +98,14 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col">
+                <div class="col-sm-6">
                     <div>
                         <h1>ROE Comparison Chart</h1>
                         <hr>
                         <div id="roe_compare_chart"></div>                        
                     </div> 
                 </div>
-                <div class="col">
+                <div class="col-sm-6">
                     <div>
                         <h1>Assets / Liability Comparison Chart</h1>
                         <hr>
@@ -115,14 +115,14 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col">
+                <div class="col-sm-6">
                     <div>
                         <h1>Cashflow Comparison Chart</h1>
                         <hr>
                         <div id="cashflow_compare_chart"></div>                        
                     </div> 
                 </div>
-                <div class="col">
+                <div class="col-sm-6">
                     <div>
                         <h1>PE Comparison Chart</h1>
                         <hr>

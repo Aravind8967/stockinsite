@@ -1,5 +1,5 @@
 #portfolio_section #portfoilo_heading h1{
-    margin-top: 60px;
+    margin-top: 70px;
     font-size: 50px;
 }
 
@@ -250,7 +250,7 @@ label {
 }
 
 #holding_chart_section #investment_price_section p{
-    font-size: 20px;
+    font-size: 1.6rem;
 }
 
 
@@ -259,7 +259,7 @@ label {
     margin-left: 20px;
     border: 1px solid white;
     border-radius: 20px;
-    width: 35rem;
+    width: 40rem;
     height: 35rem;
     margin: 15px;
 }

@@ -51,15 +51,15 @@ margin-top: 7px;
     border: 1px solid white;
     border-radius: 20px;
     overflow: hidden;
-    width: 75em; 
-    height: 35em;
+    width: 85rem; 
+    height: 35rem;
     margin-bottom: 20px;
 }
 
 /* ==================== fundamental_section ========================*/
 
 #fundamental_section #revenue_chart_anual{
-    width: 35rem;
+    width: 40rem;
     height: 20rem;
     margin-bottom: 30px;
     border: 1px solid white;
@@ -67,7 +67,7 @@ margin-top: 7px;
 }
 
 #fundamental_section #eps_pm_chart_annual{
-    width: 35rem;
+    width: 40rem;
     height: 20rem;
     margin-bottom: 30px;
     border: 1px solid white;
@@ -75,7 +75,7 @@ margin-top: 7px;
 }
 
 #fundamental_section #assets_liability_chart_annual{
-    width: 35rem;
+    width: 40rem;
     height: 20rem;
     margin-bottom: 30px;
     border: 1px solid white;
@@ -84,7 +84,7 @@ margin-top: 7px;
 
 
 #fundamental_section #shareholding_chart{
-    width: 35rem;
+    width: 40rem;
     height: 20rem;
     margin-bottom: 30px;
     border: 1px solid white;
@@ -92,7 +92,7 @@ margin-top: 7px;
 }
 
 #fundamental_section #cashflow_chart_annual{
-    width: 35rem;
+    width: 40rem;
     height: 20rem;
     margin-bottom: 30px;
     border: 1px solid white;
@@ -105,8 +105,8 @@ margin-top: 7px;
     border-radius: 20px;
     overflow: hidden;
     margin-left: 20px;
-    width: 75em; 
-    height: 35em;
+    width: 85rem; 
+    height: 35rem;
     margin-bottom: 20px;
 
 }
