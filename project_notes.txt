@@ -1,0 +1,24 @@
+[Unit]
+Description=Gunicorn service
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/stockinsite
+ExecStart=/usr/bin/gunicorn3 --workers 3 --bind unix:stockinsite.sock -m 007 app:app
+
+
+server{
+    listen 80;
+    # listen 443 ssl;
+
+    # ssl on;
+    # ssl_certificate /etc/ssl/certs/nginx-self-signed.crt;
+    # ssl_certificate_key /etc/ssl/private/nginx-self-signed.key;
+
+    server_name 13.202.204.1;
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+    }
+}

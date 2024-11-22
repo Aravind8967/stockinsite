@@ -2,4 +2,6 @@ venv
 stockinsite
 stockinsite.pub
 .env
+.gitignore
+aws_connection
 __pycache__

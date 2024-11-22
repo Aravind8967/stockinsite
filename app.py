@@ -24,6 +24,10 @@ port_folio = portfolio()
 compare_company = compare()
 # ========================= Registration =====================================
 
+@app.route('/')
+def root():
+    return redirect('/login')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
