@@ -1,11 +1,11 @@
 from flask import Flask, jsonify,render_template,flash,request,redirect,session, url_for
-from flask_cors import CORS
 from db_files.Database import Database
 from db_files.watchlist import watchlist
 from db_files.companies import companies
 from db_files.portfolio import portfolio
 from db_files.compare import compare
 from analyses.analysis import analysis, tradingview, yfinance
+from flask_cors import CORS
 
 
 d = {
