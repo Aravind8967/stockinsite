@@ -312,9 +312,9 @@ class tradingview:
 if __name__ == "__main__":
     # Example usage
     company_symbol = 'HDFCBANK'                     #RELIANCE
-    data = yfinance(company_symbol)
-    income_stmt = data.yfinance_data()   
-    print(income_stmt)
+    data = tradingview(company_symbol)   
+    tv_data = data.tradingview_data()
+    print(tv_data)
     # print("=================== income ========================")
     # print(income_stmt['dates'])
     # print("revenue : ", income_stmt['revenue'])
