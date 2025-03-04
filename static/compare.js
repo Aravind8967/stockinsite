@@ -758,7 +758,7 @@ async function shareprice_comparison_chart(c_symbol_list, share_price_arr_list) 
         const formattedData = normalizeData(sharePriceData);
 
         // Create a line series for each company
-        const lineSeries = chart.addLineSeries({
+        const lineSeries = chart.addSeries(LightweightCharts.LineSeries, {
             lineWidth: 2,
             color: getColor(i), // Function to assign different colors to each series
             crossHairMarkerVisible: false,

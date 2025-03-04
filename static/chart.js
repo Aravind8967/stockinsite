@@ -108,7 +108,7 @@ export function technical_chart(c_name, share_price_arr, line_data){
         },
     });
 
-    const areaSeries = chart.addLineSeries({
+    const areaSeries = chart.addSeries(LightweightCharts.LineSeries, {
         color: '#2962FF',
         lineWidth: 2,
         lastValueVisible: false,
@@ -278,7 +278,7 @@ export function chart_function(c_name, data){
         },
     });
 
-    const areaSeries = chart.addAreaSeries({
+    const areaSeries = chart.addSeries(LightweightCharts.AreaSeries, {
         topColor: '#2962FF',
         bottomColor: 'rgba(41, 98, 255, 0.28)',
         lineColor: '#2962FF',
@@ -286,7 +286,7 @@ export function chart_function(c_name, data){
         crossHairMarkerVisible: false,
     });
 
-    const volumeSeries = chart.addHistogramSeries({
+    const volumeSeries = chart.addSeries(LightweightCharts.HistogramSeries, {
         color: '#26a69a',
         priceFormat: {
             type: 'volume',
