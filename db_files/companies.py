@@ -1,3 +1,4 @@
+from flask import json
 import mysql
 import mysql.connector
 import os
@@ -39,6 +40,26 @@ class companies:
         else:
             return {"status":404, "data":'database connection error'}
 
+    def insert_company(self, data):
+        db = self.db_connection()
+        if db['status'] == 200:
+            try:
+                con = db['connection']
+                q = "INSERT INTO companies (c_id, c_symbol, c_name, marketcap) VALUES (%s, %s, %s, %s);"
+                cursor = con.cursor(dictionary=True)
+                cursor.execute(q, (data['c_id'],data['c_symbol'], data['c_name'], data['marketcap']))
+                db['connection'].commit()
+                return {'status':200, 'data':'New user created'}
+            except:
+                return {'status':404, 'data':'Not able to create new user'}
+        else:
+            return {'status':404, 'data':'database connection error'}
+
+
 if __name__ == '__main__':
-    c = companies()
-    print(c.search_by_name('Suyog Telematics Ltd'))
+    c_class = companies()
+    with open('./companies_list.json', 'r') as file:
+        data = json.load(file)
+        for company in data:
+            print(company)
+            c_class.insert_company(company)

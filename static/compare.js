@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function(){
     compare_btn(user_id);
 });
 
+const comon_url = "http://127.0.0.1:5000"
 
 async function add_company_to_compare(u_id) {
     try{
@@ -15,7 +16,7 @@ async function add_company_to_compare(u_id) {
             data = {
                 'c_name' : c_name
             }
-            let url = `http://127.0.0.1:300/${u_id}/add_to_compare`
+            let url = `${comon_url}/${u_id}/add_to_compare`
             let response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -47,7 +48,7 @@ async function add_company_to_compare(u_id) {
 }
 
 async function delete_compare_company(c_symbol, u_id) {
-    let url = `http://127.0.0.1:300/${u_id}/${c_symbol}/remove_from_compare`;
+    let url = `${comon_url}/${u_id}/${c_symbol}/remove_from_compare`;
     let response = await fetch(url, {method:'DELETE'});
     if(response.ok){
         let data = await response.json();
@@ -67,7 +68,7 @@ async function delete_compare_company(c_symbol, u_id) {
 
 // function to help load compare list without refreshing the page
 async function load_compare(u_id) {
-    let url = `http://127.0.0.1:300/${u_id}/load_compare`;
+    let url = `${comon_url}/${u_id}/load_compare`;
     let response = await fetch(url, { method: 'GET' });
     
     if (response.ok) {

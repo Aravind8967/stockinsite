@@ -2,6 +2,7 @@ google.charts.load('current', { packages: ['corechart'] });
 import { chart_function, finance_charts, technical_chart, technical_indicator } from "./chart.js";
 import { share_price_arr, get_c_data } from "./j_query.js";
 
+const comon_url = "http://127.0.0.1:5000"
 
 window.onload = async function() {
     await update_shareprice();
@@ -113,13 +114,13 @@ async function update_shareprice() {
 }
 
 async function truncate () {
-    let url = "http://127.0.0.1:300/truncate"
+    let url = "${comon_url}/truncate"
     let responce = await fetch(url)
     console.log(responce.json())
 }
 
 async function delete_profile(id) {
-    let url = `http://127.0.0.1:300/home/${id}/delete_account`
+    let url = `${comon_url}/home/${id}/delete_account`
     let responce = await fetch(url, {method:'DELETE'})
     let data = await responce.json()
     if (data["status"] == 200){
@@ -128,7 +129,7 @@ async function delete_profile(id) {
 }
 
 async function logout() {
-    let url = "http://127.0.0.1:300/logout"
+    let url = "${comon_url}/logout"
     let responce = await fetch(url)
     if (responce.ok){
         window.location.href = "/login"
@@ -141,7 +142,7 @@ async function logout() {
 async function search_company(user_id) {
     let search_box = document.getElementById("search-box");
     let company_name = search_box.value;
-    let url = `http://127.0.0.1:300/home/${user_id}/${company_name}`;
+    let url = `${comon_url}/home/${user_id}/${company_name}`;
     search_box.value = '';
     let responce = await fetch(url)
     if (responce.ok){
@@ -175,7 +176,7 @@ async function search_company(user_id) {
 async function add_company_to_watchlist(user_id) {
     let search_box = document.getElementById("search-box");
     let company_name = search_box.value;
-    let url = `http://127.0.0.1:300/home/${user_id}/${company_name}/add_company`;
+    let url = `${comon_url}/home/${user_id}/${company_name}/add_company`;
     search_box.value = '';
 
     try {
@@ -219,7 +220,7 @@ async function clear_watchlist(user_id) {
 }
 
 async function delete_company(c_symbol, user_id) {
-    let url = `http://127.0.0.1:300/${user_id}/${c_symbol}/delete_company`
+    let url = `${comon_url}/${user_id}/${c_symbol}/delete_company`
     let responce = await fetch(url, {method:'DELETE'})
     if (responce.ok){
         load_watchlist(user_id)
@@ -230,7 +231,7 @@ async function delete_company(c_symbol, user_id) {
 }
 
 async function share_price(c_symbol) {
-    let url = `http://127.0.0.1:300/${c_symbol}/get/share_price`;
+    let url = `${comon_url}/${c_symbol}/get/share_price`;
     let response = await fetch(url, { method: 'GET' });
 
     if (response.ok) {
