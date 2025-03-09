@@ -1,8 +1,6 @@
 import { chart_function, finance_charts } from "./chart.js";
 import { section_selection } from "./index.js";
 
-const comon_url = "http://127.0.0.1:5000"
-
 window.chart_function = chart_function;
 window.get_c_data = get_c_data;   
 window.chart_function = chart_function;
@@ -39,7 +37,7 @@ export async function share_price_arr(c_name, period) {
         return
     }
     else{
-        let share_price_arr_url = `${comon_url}/get/${c_name}/${period}/share_price_period_arr`;
+        let share_price_arr_url = `/get/${c_name}/${period}/share_price_period_arr`;
         let responce = await fetch(share_price_arr_url, {method:'GET'})
         if (responce.ok){
             let row_data = await responce.json()
@@ -52,7 +50,7 @@ export async function share_price_arr(c_name, period) {
 }
 
 export async function get_c_data(c_symbol) {
-    let url = `${comon_url}/${c_symbol}/get_data`;
+    let url = `/${c_symbol}/get_data`;
     let response = await fetch(url);
     
     if (response.ok) {

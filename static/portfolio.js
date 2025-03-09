@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', updateSharePrices);
 
-const comon_url = "http://127.0.0.1:5000"
-
 // ============= portfolio search box section ===================================
 function handle_portfolio_search() {
     let query = $('#portfolio_search-box').val();
@@ -70,7 +68,7 @@ async function add_company_to_portfolio(u_id) {
         'quantity' : quantity_val,
         'bought_price' : bought_price_val
     }
-    let url = `${comon_url}/${u_id}/add_to_portfolio`
+    let url = `/${u_id}/add_to_portfolio`
     let response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -98,7 +96,7 @@ async function add_company_to_portfolio(u_id) {
 
 // function to help load holding list without refreshing the page
 async function load_holding(u_id) {
-    let url = `${comon_url}/${u_id}/load_holding`;
+    let url = `/${u_id}/load_holding`;
     let response = await fetch(url, { method: 'GET' });
     
     if (response.ok) {
@@ -155,7 +153,7 @@ async function load_holding(u_id) {
 }
 
 async function update_company(u_id, data) {
-    let url = `${comon_url}/${u_id}/update_holding`
+    let url = `/${u_id}/update_holding`
     let response = await fetch(url, {
         method: 'PUT',
         headers: {
@@ -190,7 +188,7 @@ async function updateSharePrices() {
 }
 
 async function share_price(c_symbol) {
-    let url = `${comon_url}/${c_symbol}/get/share_price`;
+    let url = `/${c_symbol}/get/share_price`;
     let response = await fetch(url, { method: 'GET' });
 
     if (response.ok) {
@@ -204,7 +202,7 @@ async function share_price(c_symbol) {
 
 // ========================== jquery for delete button =================================
 async function delete_holding_company (c_symbol, u_id){
-    let url = `${comon_url}/${u_id}/${c_symbol}/remove_from_portfolio`;
+    let url = `/${u_id}/${c_symbol}/remove_from_portfolio`;
     let response = await fetch(url, {method:'DELETE'});
     if(response.ok){
         let data = await response.json();
