@@ -2377,10 +2377,4 @@
  {"c_id":2377, "c_symbol":"VISUINTL", "c_name":"Visu International Limited", "marketcap":0},
  {"c_id":2378, "c_symbol":"VIVIMEDLAB", "c_name":"Vivimed Labs Limited", "marketcap":0},
  {"c_id":2379, "c_symbol":"ZICOM", "c_name":"Zicom Electronic Security Systems Limited", "marketcap":0},
- {"c_id":2380, "c_symbol":"SUYOG", "c_name":"Suyog Telematics Ltd", "marketcap":1784},
- {"c_id":0, "c_symbol":"RELIANCE", "c_name":"Reliance Industries Limited", "marketcap":201056022},
- {"c_id":0, "c_symbol":"TCS", "c_name":"Tata Consultancy Services Limited", "marketcap":140247926},
- {"c_id":0, "c_symbol":"HDFCBANK", "c_name":"HDFC Bank Limited", "marketcap":109991524},
- {"c_id":1, "c_symbol":"RELIANCE", "c_name":"Reliance Industries Limited", "marketcap":201056022},
- {"c_id":2, "c_symbol":"TCS", "c_name":"Tata Consultancy Services Limited", "marketcap":140247926},
- {"c_id":3, "c_symbol":"HDFCBANK", "c_name":"HDFC Bank Limited", "marketcap":109991524}]
+ {"c_id":2380, "c_symbol":"SUYOG", "c_name":"Suyog Telematics Ltd", "marketcap":1784}]
