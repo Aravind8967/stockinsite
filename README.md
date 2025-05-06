@@ -1,4 +1,4 @@
-## Stockinsite website
+## Stockinsite with AI-Bot Assistance website
 
 
 A comprehensive web application for managing a demat account and performing stock analysis.
