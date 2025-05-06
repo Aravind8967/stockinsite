@@ -1,4 +1,4 @@
-# Stockinsite website
+## Stockinsite website
 
 
 A comprehensive web application for managing a demat account and performing stock analysis.
@@ -10,6 +10,28 @@ A comprehensive web application for managing a demat account and performing stoc
 * Integrated automated technical level computation for stocks based on fundamental and technical analysis.
 * Built a scalable cloud infrastructure and implemented local deployment; currently working on machine learning models to predict stock price trends and adding a stock assistant chatbot.
 * **Highlight:** Demonstrated expertise in cloud technologies and programming by architecting a data-intensive solution combining data science and analytics.
+
+
+## Steps to install project into local
+
+```bash
+
+git clone https://github.com/Aravind8967/stockinsite.git
+cd stockinsite
+
+pip install --no-cache-dir -r requirements.txt
+
+# To start the project 
+
+python wsig.py
+
+```
+
+# System design Images
+
+![system_design1](image/README/system_design1.png)
+
+![system_design2](image/README/system_design2.png)
 
 # Project Images
 

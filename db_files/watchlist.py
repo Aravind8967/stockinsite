@@ -8,15 +8,17 @@ DB_HOST = os.getenv('DB_HOST')
 DB_NAME = os.getenv('DB_NAME')
 DB_USER = os.getenv('DB_USER')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_PORT = os.getenv('DB_PORT')
 
 class watchlist:
     def db_connection(self):
         try:
             db_connection = mysql.connector.connect(
-                host=DB_HOST,
-                user=DB_USER,
-                password=DB_PASSWORD,
-                database=DB_NAME
+                host = DB_HOST,
+                user = DB_USER,
+                password = DB_PASSWORD,
+                database = DB_NAME,
+                port = DB_PORT
             )
             status = 200
             return {'connection':db_connection, 'status':status}
@@ -192,4 +194,5 @@ def get_by_name(name, id):
     print(data)
 
 if __name__ == '__main__':
-    get_by_id(8)
+    watch = watchlist()
+    print(watch.db_connection())
