@@ -1,4 +1,4 @@
-## Stockinsite with AI-Bot Assistance website
+## Stockinsite (A stock Brocker multi user website)
 
 
 A comprehensive web application for managing a demat account and performing stock analysis.
