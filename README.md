@@ -1,4 +1,4 @@
-## Stockinsite (A stock Brocker multi user website)
+## Stockinsite (A stock-Broker multi user website)
 
 
 A comprehensive web application for managing a demat account and performing stock analysis.
