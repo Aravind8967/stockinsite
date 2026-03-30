@@ -27,12 +27,6 @@ python wsig.py
 
 ```
 
-# System design Images
-
-![system_design1](image/README/system_design1.png)
-
-![system_design2](image/README/system_design2.png)
-
 # Project Images
 
 ![1732302334343](image/README/1732302334343.png)
@@ -60,3 +54,7 @@ python wsig.py
 ![1732302532347](image/README/1732302532347.png)
 
 ![1732302541137](image/README/1732302541137.png)
+
+# System design Images
+
+![system_design2](image/README/system_design2.png)
