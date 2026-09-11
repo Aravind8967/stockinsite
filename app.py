@@ -1,10 +1,14 @@
-from flask import Flask, jsonify,render_template,flash,request,redirect,session, url_for
+from http.client import HTTPException
+import json
+
+from flask import Flask, jsonify, render_template, flash, request, redirect, session, url_for
 from db_files.Database import Database
 from db_files.watchlist import watchlist
 from db_files.companies import companies
 from db_files.portfolio import portfolio
 from db_files.compare import compare
 from analyses.analysis import analysis, tradingview, yfinance
+from analyses.ollama_interface import ChatLLM
 from flask_cors import CORS
 
 
@@ -22,6 +26,7 @@ watch = watchlist()
 company = companies()
 port_folio = portfolio()
 compare_company = compare()
+ollama_chat = ChatLLM()
 # ========================= Registration =====================================
 
 @app.route('/')
@@ -346,6 +351,21 @@ def remove_company_from_compare(u_id, c_symbol):
 def test():
     return render_template('test.html')
 
+# ===================== ollama routes ==================
+@app.route('/history')
+def history():
+    data = {
+        'history' : ollama_chat.getHistory()
+    }
+
+    return jsonify(data)
+
+@app.route('/summary')
+def summary():
+    data = {
+        'summary' : ollama_chat.getSummary()
+    }
+    return jsonify(data)
 
 # =======================================================================
 
@@ -367,6 +387,31 @@ def search():
         return jsonify(suggestions)
     else:
         print("database connection error")
+
+# ============================ Ollama Chat route =========================
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    try:
+        # Get raw data
+        raw_data = request.data.decode("utf-8")
+
+        # Convert string to JSON
+        data = json.loads(raw_data)
+        print(data)
+        print(type(data))
+        
+        question = data.get("question")
+        if not question:
+            return jsonify({"error": "Missing 'question' field"}), 400
+
+        answer = ollama_chat.chat(question)
+        return jsonify({"answer": answer}), 200
+
+    except json.JSONDecodeError:
+        return jsonify({"error": "Invalid JSON format"}), 400
+    except Exception as error:
+        return jsonify({"error": str(error)}), 500
 
 
 if __name__ == '__main__':

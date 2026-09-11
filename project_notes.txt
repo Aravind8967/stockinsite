@@ -35,3 +35,72 @@ server{
         proxy_pass http://127.0.0.1:8000;
     }
 }
+
+
+
+* ollama container command
+
+    docker run -d `
+        --name stockinsite_ollama `
+        --gpus all `
+        -p 11434:11434 `
+        -v ollama_data:/root/.ollama `
+        ollama/ollama:latest
+
+
+======================== 
+
+
+@app.post("/chat", response_model=ChatResponse)
+def chat(request: ChatRequest):
+
+    try:
+
+        answer = chat_llm.chat(request.question)
+
+        return {
+            "answer": answer
+        }
+
+    except Exception as error:
+
+        raise HTTPException(
+            status_code=500,
+            detail=str(error)
+        )
+
+
+@app.get("/history")
+def get_history():
+
+    return {
+        "history": chat_llm.getHistory()
+    }
+
+
+@app.get("/summary")
+def get_summary():
+
+    return {
+        "summary": chat_llm.getSummary()
+    }
+
+
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    try:
+        # Get JSON body from request
+        data = request.get_json()
+        question = data.get("question")
+
+        # Call your LLM wrapper (replace with your actual function)
+        answer = ollama_chat.chat(question)
+
+        return jsonify({"answer": answer}), 200
+
+    except Exception as error:
+        return jsonify({"error": str(error)}), 500
