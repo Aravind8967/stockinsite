@@ -81,8 +81,22 @@
             <div class="loading-text" id="loading-text">Fetching stock insights...</div>
         </div>
     </div>
+    <script>
+        window.showLoading = function(text = 'Fetching stock insights...') {
+            const loadingElem = document.getElementById('loading');
+            const loadingTextElem = document.getElementById('loading-text');
+            if (loadingTextElem && text) loadingTextElem.textContent = text;
+            if (loadingElem) loadingElem.style.display = 'flex';
+        };
+
+        window.hideLoading = function() {
+            const loadingElem = document.getElementById('loading');
+            if (loadingElem) loadingElem.style.display = 'none';
+        };
+    </script>
 
     {% block body%}
+
 
     {% endblock body %}
 

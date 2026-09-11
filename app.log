@@ -6,113 +6,83 @@ Press CTRL+C to quit
  * Restarting with watchdog (windowsapi)
  * Debugger is active!
  * Debugger PIN: 119-647-774
- * Detected change in 'C:\\Users\\Aravind\\AppData\\Local\\Programs\\Python\\Python39\\Lib\\site-packages\\pandas\\core\\dtypes\\cast.py', reloading
- * Restarting with watchdog (windowsapi)
- * Debugger is active!
- * Debugger PIN: 119-647-774
-127.0.0.1 - - [11/Sep/2026 22:20:51] "GET /get/RELIANCE/1y/share_price_period_arr HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:04] "GET /search?query=hi HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:04] "GET /search?query=his HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:04] "GET /search?query=hi HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:06] "GET /search?query=hid HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:07] "GET /search?query=hidu HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:07] "GET /search?query=hidus HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:07] "GET /search?query=hidu HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:08] "GET /search?query=hid HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:08] "GET /search?query=hi HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:09] "GET /search?query=hi HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:16] "GET /search?query=io HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:17] "GET /search?query=ioc HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:22] "POST /1/add_to_compare HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:23] "GET /1/load_compare HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:23] "GET /1/compare HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:24] "GET /static/style.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:24] "GET /static/portfolio.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:24] "GET /static/chart.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:24] "GET /static/compare.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:24] "GET /static/portfolio.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:24] "GET /static/compare.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:24] "GET /static/j_query.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:24] "GET /static/index.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:24] "GET /static/chart.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:24] "GET /static/chatbot.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:25] "GET /RELIANCE/get/share_price HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:26] "GET /IOC/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:05] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:05] "GET /static/registration.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:22] "POST /login HTTP/1.1" 302 -
+127.0.0.1 - - [11/Sep/2026 22:35:23] "GET /home/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:23] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:23] "GET /static/chart.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:23] "GET /static/portfolio.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:23] "GET /static/j_query.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:23] "GET /static/index.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:23] "GET /static/chart.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:23] "GET /static/chatbot.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:25] "GET /ADANIPORTS/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:25] "GET /ADANIPORTS/get_data HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:26] "GET /get/ADANIPORTS/max/share_price_period_arr HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:26] "GET /NETWEB/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:28] "GET /RELIANCE/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:28] "GET /get/ADANIPORTS/max/share_price_period_arr HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:32] "GET /get/ADANIPORTS/yfinance_data HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:36] "GET /get/ADANIPORTS/5y/share_price_period_arr HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:37] "GET /get/ADANIPORTS/tradingview_data HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:37] "GET /static/images/nutral.jpg HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:38] "GET /static/images/bull.jpg HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:44] "GET /1/portfolio HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:44] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:44] "GET /static/chart.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:44] "GET /static/portfolio.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:44] "GET /static/portfolio.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:44] "GET /static/j_query.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:44] "GET /static/index.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:44] "GET /static/chart.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:44] "GET /static/chatbot.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:45] "GET /RELIANCE/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:46] "GET /JIOFIN/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:47] "GET /ADANIPORTS/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:48] "GET /INDUSTOWER/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:49] "GET /ACE/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:53] "GET /1/compare HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:54] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:54] "GET /static/portfolio.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:54] "GET /static/chart.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:54] "GET /static/compare.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:54] "GET /static/portfolio.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:54] "GET /static/compare.js HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:54] "GET /static/chart.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:54] "GET /static/index.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:54] "GET /static/chatbot.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:54] "GET /static/j_query.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:55] "GET /RELIANCE/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:55] "GET /IOC/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:56] "GET /HINDPETRO/get/share_price HTTP/1.1" 200 -
 C:\Users\Aravind\AppData\Local\Programs\Python\Python39\lib\site-packages\pandas\core\dtypes\cast.py:1058: RuntimeWarning: invalid value encountered in cast
   if (arr.astype(int) == arr).all():
 C:\Users\Aravind\AppData\Local\Programs\Python\Python39\lib\site-packages\pandas\core\dtypes\cast.py:1082: RuntimeWarning: invalid value encountered in cast
   if (arr.astype(int) == arr).all():
-127.0.0.1 - - [11/Sep/2026 22:21:27] "GET /get/RELIANCE/yfinance_data HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:57] "GET /get/RELIANCE/yfinance_data HTTP/1.1" 200 -
 C:\Users\Aravind\AppData\Local\Programs\Python\Python39\lib\site-packages\pandas\core\dtypes\cast.py:1058: RuntimeWarning: invalid value encountered in cast
   if (arr.astype(int) == arr).all():
 C:\Users\Aravind\AppData\Local\Programs\Python\Python39\lib\site-packages\pandas\core\dtypes\cast.py:1082: RuntimeWarning: invalid value encountered in cast
   if (arr.astype(int) == arr).all():
-127.0.0.1 - - [11/Sep/2026 22:21:27] "GET /get/IOC/yfinance_data HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:28] "GET /get/RELIANCE/1y/share_price_period_arr HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:28] "GET /get/IOC/1y/share_price_period_arr HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:34] "GET /search?query=pe HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:35] "GET /search?query=pet HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:35] "GET /search?query=petr HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:35] "GET /search?query=petro HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:44] "POST /1/add_to_compare HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:44] "GET /1/load_compare HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:44] "GET /1/compare HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:45] "GET /static/style.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:45] "GET /static/chart.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:45] "GET /static/compare.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:45] "GET /static/portfolio.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:45] "GET /static/portfolio.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:45] "GET /static/compare.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:45] "GET /static/j_query.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:45] "GET /static/chart.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:45] "GET /static/index.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:45] "GET /static/chatbot.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:46] "GET /RELIANCE/get/share_price HTTP/1.1" 200 -
-C:\Users\Aravind\AppData\Local\Programs\Python\Python39\lib\site-packages\pandas\core\dtypes\cast.py:1058: RuntimeWarning: invalid value encountered in cast
-  if (arr.astype(int) == arr).all():
-C:\Users\Aravind\AppData\Local\Programs\Python\Python39\lib\site-packages\pandas\core\dtypes\cast.py:1082: RuntimeWarning: invalid value encountered in cast
-  if (arr.astype(int) == arr).all():
-127.0.0.1 - - [11/Sep/2026 22:21:46] "GET /get/RELIANCE/yfinance_data HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:46] "GET /IOC/get/share_price HTTP/1.1" 200 -
-C:\Users\Aravind\AppData\Local\Programs\Python\Python39\lib\site-packages\pandas\core\dtypes\cast.py:1058: RuntimeWarning: invalid value encountered in cast
-  if (arr.astype(int) == arr).all():
-C:\Users\Aravind\AppData\Local\Programs\Python\Python39\lib\site-packages\pandas\core\dtypes\cast.py:1082: RuntimeWarning: invalid value encountered in cast
-  if (arr.astype(int) == arr).all():
-127.0.0.1 - - [11/Sep/2026 22:21:46] "GET /get/IOC/yfinance_data HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:47] "GET /HINDPETRO/get/share_price HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:48] "GET /get/RELIANCE/1y/share_price_period_arr HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:48] "GET /get/HINDPETRO/yfinance_data HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:48] "GET /get/IOC/1y/share_price_period_arr HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:49] "GET /get/HINDPETRO/1y/share_price_period_arr HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:55] "GET /1/portfolio HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:55] "GET /static/style.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:55] "GET /static/portfolio.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:55] "GET /static/chart.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:55] "GET /static/portfolio.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:55] "GET /static/j_query.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:55] "GET /static/index.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:56] "GET /static/chart.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:56] "GET /static/chatbot.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:21:57] "GET /RELIANCE/get/share_price HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:57] "GET /JIOFIN/get/share_price HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:21:59] "GET /ADANIPORTS/get/share_price HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:22:00] "GET /INDUSTOWER/get/share_price HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:22:01] "GET /ACE/get/share_price HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:22:04] "GET /home/1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:22:04] "GET /static/chart.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:22:04] "GET /static/style.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:22:04] "GET /static/portfolio.css HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:22:04] "GET /static/j_query.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:22:04] "GET /static/index.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:22:04] "GET /static/chart.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:22:05] "GET /static/chatbot.js HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:22:05] "GET /ADANIPORTS/get/share_price HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:22:06] "GET /ADANIPORTS/get_data HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:22:07] "GET /NETWEB/get/share_price HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:22:07] "GET /get/ADANIPORTS/max/share_price_period_arr HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:22:07] "GET /RELIANCE/get/share_price HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:22:09] "GET /get/ADANIPORTS/max/share_price_period_arr HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:22:15] "GET /get/ADANIPORTS/5y/share_price_period_arr HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:22:15] "GET /get/ADANIPORTS/tradingview_data HTTP/1.1" 200 -
-127.0.0.1 - - [11/Sep/2026 22:22:16] "GET /static/images/nutral.jpg HTTP/1.1" 304 -
-127.0.0.1 - - [11/Sep/2026 22:22:16] "GET /static/images/bull.jpg HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:35:57] "GET /get/IOC/yfinance_data HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:57] "GET /get/HINDPETRO/yfinance_data HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:58] "GET /get/RELIANCE/1y/share_price_period_arr HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:58] "GET /get/IOC/1y/share_price_period_arr HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:35:58] "GET /get/HINDPETRO/1y/share_price_period_arr HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:37:09] "POST /chat HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:38:01] "POST /chat HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:38:28] "GET /home/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:38:28] "GET /static/j_query.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:38:28] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:38:28] "GET /static/portfolio.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:38:28] "GET /static/chart.css HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:38:28] "GET /static/index.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:38:28] "GET /static/chart.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:38:29] "GET /static/chatbot.js HTTP/1.1" 304 -
+127.0.0.1 - - [11/Sep/2026 22:38:30] "GET /ADANIPORTS/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:38:30] "GET /ADANIPORTS/get_data HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:38:30] "GET /NETWEB/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:38:31] "GET /get/ADANIPORTS/max/share_price_period_arr HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:38:31] "GET /RELIANCE/get/share_price HTTP/1.1" 200 -
+127.0.0.1 - - [11/Sep/2026 22:38:33] "GET /get/ADANIPORTS/max/share_price_period_arr HTTP/1.1" 200 -

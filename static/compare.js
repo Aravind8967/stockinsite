@@ -1,11 +1,18 @@
-document.addEventListener('DOMContentLoaded', function(){
-    const user_id = document.getElementById('u_id').textContent.trim();
-    compare_btn(user_id);
+document.addEventListener('DOMContentLoaded', async function(){
+    const uIdElem = document.getElementById('u_id');
+    if (!uIdElem) return;
+    const user_id = uIdElem.textContent.trim();
+    if (typeof showLoading === 'function') showLoading('Loading company comparison charts...');
+    try {
+        await compare_btn(user_id);
+    } finally {
+        if (typeof hideLoading === 'function') hideLoading();
+    }
 });
 
 async function add_company_to_compare(u_id) {
+    if (typeof showLoading === 'function') showLoading('Adding company to compare list...');
     try{
-        $('#loading').show();
         let search_box = document.getElementById('portfolio_search-box');
         let rowCount = $('#holding_items .holding_row').length;
         if (rowCount <= 3){
@@ -28,7 +35,7 @@ async function add_company_to_compare(u_id) {
                     alert(recived_data['data'])
                 }
                 else{
-                    load_compare(u_id);
+                    await load_compare(u_id);
                     location.reload(true);
                 }
             }
@@ -41,28 +48,33 @@ async function add_company_to_compare(u_id) {
         }
     }
     finally{
-        $('#loading').hide();
+        if (typeof hideLoading === 'function') hideLoading();
     }
 }
 
 async function delete_compare_company(c_symbol, u_id) {
-    let url = `/${u_id}/${c_symbol}/remove_from_compare`;
-    let response = await fetch(url, {method:'DELETE'});
-    if(response.ok){
-        let data = await response.json();
-        if (data['status'] == 200){
-            load_compare(u_id);
-            location.reload(true);
+    if (typeof showLoading === 'function') showLoading('Removing company from compare list...');
+    try {
+        let url = `/${u_id}/${c_symbol}/remove_from_compare`;
+        let response = await fetch(url, {method:'DELETE'});
+        if(response.ok){
+            let data = await response.json();
+            if (data['status'] == 200){
+                await load_compare(u_id);
+                location.reload(true);
+            }
+            else{
+                console.log('database connection error');
+            }
         }
         else{
-            console.log('database connection error');
+            console.log('Unknown error');
         }
+    } finally {
+        if (typeof hideLoading === 'function') hideLoading();
     }
-    else{
-        console.log('Unknown error');
-    }
-
 }
+
 
 // function to help load compare list without refreshing the page
 async function load_compare(u_id) {
@@ -239,15 +251,16 @@ async function generate_charts(companies_data) {
 }
 
 async function compare_btn(u_id) {
+    if (typeof showLoading === 'function') showLoading('Fetching comparison metrics & charts...');
     try{
-        $('#loading').show();
         let companies_data = await get_c_details(u_id);
         let generate_chart = await generate_charts(companies_data);
     }
     finally{
-        $('#loading').hide();
+        if (typeof hideLoading === 'function') hideLoading();
     }
 }
+
 
 
 

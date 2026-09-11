@@ -1,4 +1,11 @@
-document.addEventListener('DOMContentLoaded', updateSharePrices);
+document.addEventListener('DOMContentLoaded', async () => {
+    if (typeof showLoading === 'function') showLoading('Loading portfolio & market prices...');
+    try {
+        await updateSharePrices();
+    } finally {
+        if (typeof hideLoading === 'function') hideLoading();
+    }
+});
 
 // ============= portfolio search box section ===================================
 function handle_portfolio_search() {
@@ -54,43 +61,47 @@ $(document).ready(function(){
 // ==================== Portfolio operation functions =======================================
 
 async function add_company_to_portfolio(u_id) {
-    let search_box = document.getElementById('portfolio_search-box');
-    let c_name = search_box.value;
-    let quantity = document.getElementById('portfolio_quantity');
-    let quantity_val = quantity.value
-    let bought_price = document.getElementById('portfolio_bought-price');
-    let bought_price_val = bought_price.value
-    search_box.value = '';
-    quantity.value = '';
-    bought_price.value = '';
-    data = {
-        'c_name' : c_name,
-        'quantity' : quantity_val,
-        'bought_price' : bought_price_val
-    }
-    let url = `/${u_id}/add_to_portfolio`
-    let response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
+    if (typeof showLoading === 'function') showLoading('Adding company to portfolio...');
+    try {
+        let search_box = document.getElementById('portfolio_search-box');
+        let c_name = search_box.value;
+        let quantity = document.getElementById('portfolio_quantity');
+        let quantity_val = quantity.value;
+        let bought_price = document.getElementById('portfolio_bought-price');
+        let bought_price_val = bought_price.value;
+        search_box.value = '';
+        quantity.value = '';
+        bought_price.value = '';
+        data = {
+            'c_name' : c_name,
+            'quantity' : quantity_val,
+            'bought_price' : bought_price_val
+        };
+        let url = `/${u_id}/add_to_portfolio`;
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
 
-    if (response.ok){
-        let recived_data = await response.json();
-        if (recived_data['status'] == 404){
-            alert(recived_data['data'])
+        if (response.ok){
+            let recived_data = await response.json();
+            if (recived_data['status'] == 404){
+                alert(recived_data['data']);
+            }
+            else{
+                await load_holding(u_id);
+                location.reload(true);
+            }
         }
         else{
-            load_holding(u_id);
-            location.reload(true);
+            console.log('unknown error');
         }
+    } finally {
+        if (typeof hideLoading === 'function') hideLoading();
     }
-    else{
-        console.log('unknown error');
-    }
-
 }
 
 
@@ -202,20 +213,25 @@ async function share_price(c_symbol) {
 
 // ========================== jquery for delete button =================================
 async function delete_holding_company (c_symbol, u_id){
-    let url = `/${u_id}/${c_symbol}/remove_from_portfolio`;
-    let response = await fetch(url, {method:'DELETE'});
-    if(response.ok){
-        let data = await response.json();
-        if (data['status'] == 200){
-            load_holding(u_id);
-            location.reload();
+    if (typeof showLoading === 'function') showLoading('Removing company from portfolio...');
+    try {
+        let url = `/${u_id}/${c_symbol}/remove_from_portfolio`;
+        let response = await fetch(url, {method:'DELETE'});
+        if(response.ok){
+            let data = await response.json();
+            if (data['status'] == 200){
+                await load_holding(u_id);
+                location.reload();
+            }
+            else{
+                console.log('database connection error');
+            }
         }
         else{
-            console.log('database connection error');
+            console.log('Unknown error');
         }
-    }
-    else{
-        console.log('Unknown error');
+    } finally {
+        if (typeof hideLoading === 'function') hideLoading();
     }
 }
 
@@ -233,31 +249,36 @@ $(document).ready(function(){
 // ================== analysis section ================================
 
 async function analysis_btn(u_id) {
-    let holding_items = document.getElementById('holding_items');
-    let rows = holding_items.getElementsByClassName('holding_row');
+    if (typeof showLoading === 'function') showLoading('Analyzing portfolio holdings...');
+    try {
+        let holding_items = document.getElementById('holding_items');
+        let rows = holding_items.getElementsByClassName('holding_row');
 
-    // Create an array of promises to wait for all async operations
-    let updatePromises = Array.from(rows).map(async (row) => {
-        let c_symbol = row.querySelector('.holding_company p').innerText.trim();
-        let quantity = row.querySelector('input[name="quantity"]').value;
-        let bought_price = row.querySelector('input[name="bought_price"]').value;
+        // Create an array of promises to wait for all async operations
+        let updatePromises = Array.from(rows).map(async (row) => {
+            let c_symbol = row.querySelector('.holding_company p').innerText.trim();
+            let quantity = row.querySelector('input[name="quantity"]').value;
+            let bought_price = row.querySelector('input[name="bought_price"]').value;
 
-        let update_data = {
-            'u_id': u_id,
-            'c_symbol': c_symbol,
-            'quantity': quantity,
-            'bought_price': bought_price
-        };
+            let update_data = {
+                'u_id': u_id,
+                'c_symbol': c_symbol,
+                'quantity': quantity,
+                'bought_price': bought_price
+            };
 
-        // Await the update for each company
-        let update_status = await update_company(u_id, update_data);
-        return update_status;  // Return the status or result from update_company
-    });
-    await Promise.all(updatePromises);
-    let load_updated_data = await load_holding(u_id)
-    .then(console.log("loading done"))
-    .then(portfoilo_charts(u_id));
+            // Await the update for each company
+            let update_status = await update_company(u_id, update_data);
+            return update_status;  // Return the status or result from update_company
+        });
+        await Promise.all(updatePromises);
+        let load_updated_data = await load_holding(u_id);
+        portfoilo_charts(u_id);
+    } finally {
+        if (typeof hideLoading === 'function') hideLoading();
+    }
 }
+
 
 
 
