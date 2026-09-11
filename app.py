@@ -392,16 +392,18 @@ def search():
 
 @app.route('/chat', methods=['POST'])
 def chat():
+    print('chat function called')
     try:
-        # Get raw data
-        raw_data = request.data.decode("utf-8")
-
-        # Convert string to JSON
-        data = json.loads(raw_data)
+        data = request.get_json(silent=True)
         print(data)
-        print(type(data))
+        if not data:
+            raw_data = request.data.decode("utf-8")
+            if raw_data:
+                data = json.loads(raw_data)
+            else:
+                data = {}
         
-        question = data.get("question")
+        question = data.get("question") if isinstance(data, dict) else None
         if not question:
             return jsonify({"error": "Missing 'question' field"}), 400
 
@@ -412,6 +414,7 @@ def chat():
         return jsonify({"error": "Invalid JSON format"}), 400
     except Exception as error:
         return jsonify({"error": str(error)}), 500
+
 
 
 if __name__ == '__main__':

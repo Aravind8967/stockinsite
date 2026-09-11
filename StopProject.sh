@@ -1,27 +1,39 @@
+#!/bin/bash
+
 DB_CONT="stockinsite"
+OLLAMA_CONT="stockinsite_ollama"
 
-DB_STATUS=$(docker ps --filter "name=$DB_CONT" --format "{{.Names}}")
-PY_PID=$(ps -ef | grep python | awk '{print $2}')
+# Get exact matches for container names
+DB_STATUS=$(docker ps --filter "name=${DB_CONT}$" --format "{{.Names}}")
+OLLAMA_STATUS=$(docker ps --filter "name=${OLLAMA_CONT}$" --format "{{.Names}}")
 
-
-if [ "$DB_STATUS" == "$DB_CONT" ]; then
+# Stop DB container first
+if [ "$DB_STATUS" = "$DB_CONT" ]; then
+    echo "$DB_CONT is running..."
     docker stop "$DB_CONT"
     sleep 3
-    echo "$DB_CONT container stoppend"
+    echo "$DB_CONT container stopped"
 fi
 
-sleep 2
-echo " Stopping the application server "
-sleep 5
+# Then stop Ollama container
+if [ "$OLLAMA_STATUS" = "$OLLAMA_CONT" ]; then
+    echo "$OLLAMA_CONT is running..."
+    docker stop "$OLLAMA_CONT"
+    sleep 3
+    echo "$OLLAMA_CONT container stopped"
+fi
 
-if [ "$PY_PID" ]; then
-    echo "Python is running"
+# Stop Python process if running
+PY_PID=$(ps -ef | grep python | grep -v grep | awk '{print $2}')
+echo "Stopping the application server..."
+if [ -n "$PY_PID" ]; then
+    echo "Python is running with PID $PY_PID"
     kill -9 "$PY_PID"
-    sleep 2
+    sleep 3
     echo "Python process stopped"
 fi
-sleep 5
 
-echo '' > app.log
+# Clear logs
+> app.log
 
 echo "Project stopped"

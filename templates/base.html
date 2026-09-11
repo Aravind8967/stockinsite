@@ -73,12 +73,73 @@
             </div>
         </div>
     </nav>
+
+    <!-- Global Glass Loading Overlay -->
+    <div id="loading" style="display:none;">
+        <div class="spinner-box">
+            <div class="dual-ring-spinner"></div>
+            <div class="loading-text" id="loading-text">Fetching stock insights...</div>
+        </div>
+    </div>
+
     {% block body%}
 
     {% endblock body %}
+
+    <!-- Financial Chatbot Floating Circle Button -->
+    <button id="chatbot-toggle-btn" class="chatbot-toggle-btn" title="Financial AI Chatbot">
+        <span class="material-symbols-outlined">smart_toy</span>
+    </button>
+
+    <!-- Floating Chatbot Modal Window -->
+    <div id="chatbot-window" class="chatbot-window">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="bot-avatar">
+                    <span class="material-symbols-outlined">smart_toy</span>
+                </div>
+                <div class="chat-title-group">
+                    <h5 class="chat-title">StockInsite Gen AI</h5>
+                    <span class="chat-status"><span class="chat-status-dot"></span> Online Assistant</span>
+                </div>
+            </div>
+            <div class="chat-header-actions">
+                <button id="minimize-chat-btn" class="chat-header-btn" title="Minimize">
+                    <span class="material-symbols-outlined">remove</span>
+                </button>
+                <button id="close-chat-btn" class="chat-header-btn" title="Close">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="chat-body" class="chat-body">
+            <div class="chat-message bot">
+                <div class="message-content">
+                    👋 Hello <strong>{{data.user.u_name}}</strong>! I'm your StockInsite Financial AI Assistant. Ask me anything about stock analysis, market metrics, P/E ratios, or financial terms!
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-suggestions">
+            <button class="chip-btn" data-prompt="What is PE ratio and how is it used?">PE Ratio</button>
+            <button class="chip-btn" data-prompt="Explain Market Cap vs Enterprise Value">Market Cap</button>
+            <button class="chip-btn" data-prompt="How do I analyze fundamental stock metrics?">Fundamentals</button>
+            <button class="chip-btn" data-prompt="What is RSI and MACD indicator?">RSI & MACD</button>
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Ask AI financial question..." autocomplete="off">
+            <button id="send-chat-btn" class="chat-send-btn" title="Send message">
+                <span class="material-symbols-outlined">send</span>
+            </button>
+        </div>
+    </div>
+
     <script type="module" src="{{url_for('static', filename='j_query.js')}}"></script>
     <script type="module" src="{{url_for('static', filename='index.js')}}"></script>
     <script type="module" src="{{url_for('static', filename='chart.js')}}"></script>
+    <script src="{{url_for('static', filename='chatbot.js')}}"></script>
 </body>
 
-</html>
+</html>

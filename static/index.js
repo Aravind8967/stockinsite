@@ -24,30 +24,45 @@ window.portfoilo_page = portfoilo_page;
 window.compare_page = compare_page;
 window.get_c_data = get_c_data;
 
+function showLoading(text = 'Fetching stock insights...') {
+    const loadingElem = document.getElementById('loading');
+    const loadingTextElem = document.getElementById('loading-text');
+    if (loadingTextElem && text) loadingTextElem.textContent = text;
+    if (loadingElem) loadingElem.style.display = 'flex';
+}
+
+function hideLoading() {
+    const loadingElem = document.getElementById('loading');
+    if (loadingElem) loadingElem.style.display = 'none';
+}
+
 $(document).ready(function () {
     let isLoading = false;  // To prevent multiple clicks while loading
-    try{
-        $('#loading').show();
+    try {
+        showLoading('Loading watchlist & market data...');
         if ($('#watchlist_items .watchlist-row').length > 0) {
             let firstCompany = $('#watchlist_items .watchlist-row:first .company-name p').text();
             // Ensure a slight delay before fetching data to allow page components to settle
             setTimeout(() => {
-                if (firstCompany && firstCompany !== undefined) {
+                if (firstCompany && firstCompany !== undefined && firstCompany !== 'undefined') {
                     showCompanyData(firstCompany);
                     section_selection('chart', firstCompany);
+                } else {
+                    hideLoading();
                 }
             }, 300);
         } else {
-            document.getElementById('chart_container').style.display = 'none';
-            document.getElementById('company_section').style.display = 'none';
-            document.getElementById('fundamental_section').style.display = 'none';
-            document.getElementById('technical_section').style.display = 'none';
-            document.getElementById('empty_watchlist').style.display = 'block';
+            if (document.getElementById('chart_container')) document.getElementById('chart_container').style.display = 'none';
+            if (document.getElementById('company_section')) document.getElementById('company_section').style.display = 'none';
+            if (document.getElementById('fundamental_section')) document.getElementById('fundamental_section').style.display = 'none';
+            if (document.getElementById('technical_section')) document.getElementById('technical_section').style.display = 'none';
+            if (document.getElementById('empty_watchlist')) document.getElementById('empty_watchlist').style.display = 'block';
+            hideLoading();
         }
+    } catch (e) {
+        hideLoading();
     }
-    finally{
-        $('#loading').hide();
-    }
+
     // Function to handle the display of company data and sections
     async function showCompanyData(company_symbol) {
         if (!company_symbol || isLoading) {
@@ -56,24 +71,19 @@ $(document).ready(function () {
         }
 
         try {
-            // Set loading state
             isLoading = true;
-
-            // Show the loading spinner and block user input
-            $('#loading').show();
-            // Reset styles and highlight selected
-            $('.watchlist-row').css({'border': 'none'})
-            // Simulate a delay to make sure all data is properly loaded before the next step
-            await new Promise(resolve => setTimeout(resolve, 500));
+            showLoading(`Loading ${company_symbol} company details...`);
+            $('.watchlist-row').css({'border': 'none'});
+            await new Promise(resolve => setTimeout(resolve, 300));
             await get_c_data(company_symbol);
             await section_selection('chart', company_symbol);
-
         } finally {
             $(`.watchlist-row:contains(${company_symbol})`).css({'border': '2px solid white', 'border-radius': '10px'}); 
-            $('#loading').hide();
+            hideLoading();
             isLoading = false;  // Reset loading state
         }
     }
+
     // Initialize watchlist click handlers
     function initializeWatchlistClickHandler() {
         $('#watchlist_items').off('click', '.watchlist-row').on('click', '.watchlist-row', async function () {
@@ -328,12 +338,8 @@ export async function section_selection(section_name, company_symbol) {
     let fundamental_section = document.getElementById('fundamental_section');
     let technical_section = document.getElementById('technical_section');
     let empty_watchlist = document.getElementById('empty_watchlist');
-    let loadingSpinner = document.getElementById('loading'); // Assume this is your loading spinner element
 
     try {
-        // Show the loading spinner at the start of each section change
-        loadingSpinner.style.display = 'block';
-
         if (section_name === 'show_all') {
             chart_container.style.display = 'block';
             fundamental_section.style.display = 'block';
@@ -347,39 +353,36 @@ export async function section_selection(section_name, company_symbol) {
         }
 
         if (section_name === 'chart') {
-            try{
-                $('#loading').show();
-                company_section.style.display = 'block';
-                chart_container.style.display = 'block';
-                fundamental_section.style.display = 'none';
-                technical_section.style.display = 'none';
-                empty_watchlist.style.display = 'none'
-                
-                // Fetch and display the chart data
-                let shares_arr = await share_price_arr(company_symbol, 'max');
-                chart_function(company_symbol, shares_arr);
-            }
-            finally{
-                $('#loading').hide();
-            }
+            showLoading(`Loading chart for ${company_symbol || 'selected stock'}...`);
+            company_section.style.display = 'block';
+            chart_container.style.display = 'block';
+            fundamental_section.style.display = 'none';
+            technical_section.style.display = 'none';
+            if (empty_watchlist) empty_watchlist.style.display = 'none';
+            
+            // Fetch and display the chart data
+            let shares_arr = await share_price_arr(company_symbol, 'max');
+            chart_function(company_symbol, shares_arr);
         }
         
         if (section_name === 'fundamental') {
+            showLoading(`Analyzing fundamentals for ${company_symbol || 'selected stock'}...`);
             company_section.style.display = 'block';
             chart_container.style.display = 'none';
             technical_section.style.display = 'none';
             fundamental_section.style.display = 'block';
-            empty_watchlist.style.display = 'none'
+            if (empty_watchlist) empty_watchlist.style.display = 'none';
             // Fetch and display the fundamental data
-            finance_charts(company_symbol);
+            await finance_charts(company_symbol);
         }
         
         if (section_name === 'technical') {
+            showLoading(`Calculating technical indicators for ${company_symbol || 'selected stock'}...`);
             company_section.style.display = 'block';
             chart_container.style.display = 'none';
             fundamental_section.style.display = 'none';
             technical_section.style.display = 'block';
-            empty_watchlist.style.display = 'none'
+            if (empty_watchlist) empty_watchlist.style.display = 'none';
             // Fetch technical data
             let shares_arr = await share_price_arr(company_symbol, '5y');
             if (!shares_arr || typeof shares_arr.map !== 'function') {
@@ -389,22 +392,21 @@ export async function section_selection(section_name, company_symbol) {
 
             // Fetch additional technical indicator data
             let tradingview = await tradingview_data(company_symbol);
-            let line_data = tradingview['line_data'];
-            let indicator_data = tradingview['indicator_data'];
+            let line_data = tradingview ? tradingview['line_data'] : null;
+            let indicator_data = tradingview ? tradingview['indicator_data'] : null;
 
             // Display the technical chart and indicators
             technical_chart(company_symbol, shares_arr, line_data);
-            technical_indicator(indicator_data);
+            if (indicator_data) technical_indicator(indicator_data);
         }
 
     } catch (error) {
         console.error("Error processing section selection:", error);
-
     } finally {
-        // Hide the loading spinner once data processing is complete
-        loadingSpinner.style.display = 'none';
+        hideLoading();
     }
 }
+
 
 // Annual and half year button operations
 function toggleButtons_revenue(selected) {

@@ -3,23 +3,6 @@
 
 {% block body %}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<div id="loading" style="display:none;"></div>
-<style>
-    /* Add the loading overlay and spinner styles */
-    #loading {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-        z-index: 9999; /* Ensures it's on top of other elements */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-</style>
 <div class="row">
     <div class="col-sm-3" id="watchlist_container">
         <div class="input-group mb-3">
@@ -68,21 +51,21 @@
         <div class="row">
             <div id="company_section">
                 <div>
-                    <div id="company_symbol" style="float: left;">Company Symbol</div>
+                    <div id="company_symbol" style="float: left;">--</div>
                     <div id="price_section">
-                        <div id="share_price">Shareprice</div>
+                        <div id="share_price">--</div>
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="row">
                                     <div class="col">
-                                        <div id="change_num" style="float: left;">change_num</div>
-                                        <div id="change_percent">change</div>
+                                        <div id="change_num" style="float: left;">--</div>
+                                        <div id="change_percent">--</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     <!-- </div> -->
-                    <div id="company_name">Company Name</div>
+                    <div id="company_name">--</div>
                 </div>
                 <div id="company_button">
                     <button class="btn btn-success" type="button" onclick="section_selection('chart', document.getElementById('company_symbol').textContent)">Chart</button>
@@ -104,80 +87,81 @@
                     <h1 style="margin-top: 20px;">Company Details</h1>
                     <hr>
                     <div class="row" id="company_detailes_bussiness_row">
-                        <h4>Company Bussiness</h4>
-                        <h5 style="text-align: left;" id="bussiness">company Bussiness</h5>
+                        <h4>Company Business</h4>
+                        <h5 style="text-align: left;" id="bussiness">--</h5>
                     </div>
                     <div class="row" id="company_detailes_row">
                         <div class="col" id="detailes">
                             <h5 style="float: left;">Market Cap</h5>
-                            <h5 style="text-align: right;" id="marketcap">marketcap</h5>
+                            <h5 style="text-align: right;" id="marketcap">--</h5>
                         </div>
                         <div class="col" id="detailes">
                             <h5 style="float: left;">Industry</h5>
-                            <h5 style="text-align: right;" id="industry">industry</h5>
+                            <h5 style="text-align: right;" id="industry">--</h5>
                         </div>
                         <div class="col" id="detailes">
                             <h5 style="float: left;">Sector</h5>
-                            <h5 style="text-align: right;" id="sector">sector</h5>
+                            <h5 style="text-align: right;" id="sector">--</h5>
                         </div>
                     </div> 
                     <div class="row" id="company_detailes_row">
                         <div class="col" id="detailes">
                             <h5 style="float: left;">PE</h5>
-                            <h5 style="text-align: right;" id="pe">pe</h5>
+                            <h5 style="text-align: right;" id="pe">--</h5>
                         </div>
                         <div class="col" id="detailes">
                             <h5 style="float: left;">PB</h5>
-                            <h5 style="text-align: right;" id="pb">pb</h5>
+                            <h5 style="text-align: right;" id="pb">--</h5>
                         </div>
                         <div class="col" id="detailes">
                             <h5 style="float: left;">EPS</h5>
-                            <h5 style="text-align: right;" id="eps">eps</h5>
+                            <h5 style="text-align: right;" id="eps">--</h5>
                         </div>
                     </div> 
                     <div class="row" id="company_detailes_row">
                         <div class="col" id="detailes">
                             <h5 style="float: left;">Target Price</h5>
-                            <h5 style="text-align: right;" id="targetprice">targetprice</h5>
+                            <h5 style="text-align: right;" id="targetprice">--</h5>
                         </div>
                         <div class="col" id="detailes">
-                            <h5 style="float: left;">52 Week (high/Low)</h5>
-                            <h5 style="text-align: right;" id="fifty2_high_low">fifty2_high_low</h5>
+                            <h5 style="float: left;">52 Week (High/Low)</h5>
+                            <h5 style="text-align: right;" id="fifty2_high_low">-- / --</h5>
                         </div>
                         <div class="col" id="detailes">
                             <h5 style="float: left;">Dividend Yield</h5>
-                            <h5 style="text-align: right;" id="dividentyield">dividentyield</h5>
+                            <h5 style="text-align: right;" id="dividentyield">--</h5>
                         </div>
                     </div> 
                     <div class="row" id="company_detailes_row">
                         <div class="col" id="detailes">
                             <h5 style="float: left;">Book Value</h5>
-                            <h5 style="text-align: right;" id="bookvalue">bookvalue</h5>
+                            <h5 style="text-align: right;" id="bookvalue">--</h5>
                         </div>
                         <div class="col" id="detailes">
                             <h5 style="float: left;">Earning Growth</h5>
-                            <h5 style="text-align: right;" id="earninggrowth">earninggrowth</h5>
+                            <h5 style="text-align: right;" id="earninggrowth">--</h5>
                         </div>
                         <div class="col" id="detailes">
                             <h5 style="float: left;">Revenue Growth</h5>
-                            <h5 style="text-align: right;" id="revenuegrowth">revenuegrowth</h5>
+                            <h5 style="text-align: right;" id="revenuegrowth">--</h5>
                         </div>
                     </div> 
                     <div class="row" id="company_detailes_row">
                         <div class="col" id="detailes">
                             <h5 style="float: left;">Total Revenue</h5>
-                            <h5 style="text-align: right;" id="totalrevenue">totalrevenue</h5>
+                            <h5 style="text-align: right;" id="totalrevenue">--</h5>
                         </div>
                         <div class="col" id="detailes">
                             <h5 style="float: left;">Total Cash</h5>
-                            <h5 style="text-align: right;" id="totalcash">totalcash</h5>
+                            <h5 style="text-align: right;" id="totalcash">--</h5>
                         </div>
                         <div class="col" id="detailes">
                             <h5 style="float: left;">Total Debt</h5>
-                            <h5 style="text-align: right;" id="totaldebt">totaldebt</h5>
+                            <h5 style="text-align: right;" id="totaldebt">--</h5>
                         </div>
                     </div> 
                 </div>
+
                 <div class="row">
                     <h1 style="margin-left: 20px; width: 76rem; padding-top: 15px; padding-bottom: 15px; border-top: 2px solid rgb(76, 72, 72); border-bottom: 2px solid rgb(76, 72, 72);">
                         Share Price Chart

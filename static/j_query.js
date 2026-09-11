@@ -107,7 +107,7 @@ export async function get_c_data(c_symbol) {
 }
 
 function company_details(data){
-    let bussiness = document.getElementById('bussiness')
+    let bussiness = document.getElementById('bussiness');
     let marketcap = document.getElementById('marketcap');
     let industry = document.getElementById('industry');
     let sector = document.getElementById('sector');
@@ -122,26 +122,28 @@ function company_details(data){
     let revenue_growth = document.getElementById('revenuegrowth');
     let total_revenue = document.getElementById('totalrevenue');
     let total_cash = document.getElementById('totalcash');
-    let total_debt = document.getElementById('totaldebt')
+    let total_debt = document.getElementById('totaldebt');
 
-    bussiness.innerHTML = data.bussiness;
-    marketcap.innerHTML = `${data.marketcap} Cr`;
-    industry.innerHTML = data.industry;
-    industry.innerHTML = data.industry;
-    sector.innerHTML = data.sector;
-    pe.innerHTML = data.pe;
-    pb.innerHTML = data.pb;
-    eps.innerHTML = data.eps;
-    targetprice.innerHTML = data.targetprice;
-    fifty2_high_low.innerHTML = `${data.fifty2_week_high} / ${data.fifty2_week_low}`;
-    divident_yield.innerHTML = data.divident_yield;
-    bookvalue.innerHTML = data.bookvalue;
-    earning_growth.innerHTML = data.earning_growth;
-    revenue_growth.innerHTML = data.revenue_growth;
-    total_revenue.innerHTML = `${data.total_revenue} Cr`;
-    total_cash.innerHTML = `${data.total_cash} Cr`;
-    total_debt.innerHTML = `${data.total_debt} Cr`;
+    const fmtVal = (val, suffix = '') => (val !== null && val !== undefined && val !== 'None' && val !== 'N/A') ? `${val}${suffix}` : '--';
+
+    if (bussiness) bussiness.innerHTML = fmtVal(data.bussiness);
+    if (marketcap) marketcap.innerHTML = fmtVal(data.marketcap, ' Cr');
+    if (industry) industry.innerHTML = fmtVal(data.industry);
+    if (sector) sector.innerHTML = fmtVal(data.sector);
+    if (pe) pe.innerHTML = fmtVal(data.pe);
+    if (pb) pb.innerHTML = fmtVal(data.pb);
+    if (eps) eps.innerHTML = fmtVal(data.eps);
+    if (targetprice) targetprice.innerHTML = fmtVal(data.targetprice);
+    if (fifty2_high_low) fifty2_high_low.innerHTML = `${fmtVal(data.fifty2_week_high)} / ${fmtVal(data.fifty2_week_low)}`;
+    if (divident_yield) divident_yield.innerHTML = fmtVal(data.divident_yield);
+    if (bookvalue) bookvalue.innerHTML = fmtVal(data.bookvalue);
+    if (earning_growth) earning_growth.innerHTML = fmtVal(data.earning_growth);
+    if (revenue_growth) revenue_growth.innerHTML = fmtVal(data.revenue_growth);
+    if (total_revenue) total_revenue.innerHTML = fmtVal(data.total_revenue, ' Cr');
+    if (total_cash) total_cash.innerHTML = fmtVal(data.total_cash, ' Cr');
+    if (total_debt) total_debt.innerHTML = fmtVal(data.total_debt, ' Cr');
 }
+
 
 // ======================== finding the company name in database ================
 // for watchlist search bar
