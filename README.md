@@ -1,15 +1,18 @@
 ## Stockinsite ( Stock-Broker multi user website )
 
 
-A comprehensive web application for managing a demat account and performing stock analysis.
+A comprehensive web application for managing a Demat account and performing stock analysis with Gen AI.
 
-* Developed a robust backend using Python Flask and AWS RDS to handle large datasets efficiently, ensuring seamless user experience.
-* Implemented advanced data visualization using Google Charts, enabling users to analyze company revenue, profit trends, and balance sheet growth through interactive line and bar graphs.
-* Created features for portfolio management, including profit-loss tracking, company-wise contribution analysis, and fund diversification insights.
-* Designed comparison tools for evaluating multiple companies’ financial performance, including profit-loss statements, ROE, ROCE, and other fundamental metrics.
-* Integrated automated technical level computation for stocks based on fundamental and technical analysis.
-* Built a scalable cloud infrastructure and implemented local deployment; currently working on machine learning models to predict stock price trends and adding a stock assistant chatbot.
-* **Highlight:** Demonstrated expertise in cloud technologies and programming by architecting a data-intensive solution combining data science and analytics.
+* Integrated a **GenAI Financial Assistant** with conversational memory, enabling users to analyze stocks, understand investment concepts, and ask follow-up questions using relevant context from previous conversations.
+* Developed a robust **Python Flask backend** with AWS RDS to efficiently manage and process large financial datasets.
+* Implemented **interactive Google Charts** for analyzing company revenue, profit trends, balance sheets, and other financial metrics.
+* Built comprehensive **portfolio management features including profit/loss tracking**, company-wise contribution analysis, and fund diversification insights.
+* Developed stock comparison tools to evaluate companies across financial metrics such as Profit/Loss, ROE, ROCE, and other fundamental indicators.
+* Integrated automated technical level computation using **fundamental and technical market analysis**.
+* Designed a scalable cloud-based architecture with support for local deployment and integrated external financial data sources for market analysis.
+* Currently extending the platform with machine learning-based stock price prediction and advanced GenAI capabilities for financial analysis and investment education.
+
+Highlight: A full-stack financial analytics platform combining Python, Flask, AWS, financial data analytics, data visualization, machine learning, and Generative AI.
 
 
 ## Steps to install project into local
@@ -29,11 +32,14 @@ python wsig.py
 
 # System design Images
 
-![system_design1](image/README/system_design1.png)
-
-![system_design2](image/README/system_design2.png)
+<img width="1888" height="815" alt="system_design1" src="https://github.com/user-attachments/assets/49acb7ec-e14c-470d-8072-9b0da6e852dc" />
 
 # Project Images
+
+<img width="1916" height="963" alt="Gen AI" src="https://github.com/user-attachments/assets/6c9f0c18-4076-4126-aa34-7f8ea3775b3b" />
+
+<img width="1920" height="973" alt="Gen AI2" src="https://github.com/user-attachments/assets/8414a48e-f645-4384-bdd2-fba04a95ec0b" />
+
 
 ![1732302334343](image/README/1732302334343.png)
 
