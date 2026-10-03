@@ -19,19 +19,19 @@ A comprehensive web application for managing a demat account and performing stoc
 git clone https://github.com/Aravind8967/stockinsite.git
 cd stockinsite
 
-pip install --no-cache-dir -r requirements.txt
+# Start the docker desktop
 
-# To start the project 
+docker-compose up -d --build
 
-python wsig.py
+docker-copose up -d
+
+docker-copose down
 
 ```
 
 # System design Images
 
-![system_design1](image/README/system_design1.png)
-
-![system_design2](image/README/system_design2.png)
+![alt text](image/README/system_design1.png)
 
 # Project Images
 
