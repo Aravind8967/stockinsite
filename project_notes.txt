@@ -1,3 +1,80 @@
+========================================================
+             STOCKINSITE PROJECT DETAILS & SETUP
+========================================================
+
+--------------------------------------------------------
+1. DOCKER COMPOSE COMMANDS & SERVICES OVERVIEW
+--------------------------------------------------------
+* Start all project containers:
+    docker-compose up -d
+    (OR run ./StartProject.sh)
+
+* Stop all project containers:
+    docker-compose down
+    (OR run ./StopProject.sh)
+
+* View Application Logs:
+    docker-compose logs -f stockinsite_app
+
+* Web Application URL:
+    http://localhost:5000
+
+* Containers Stack:
+    - stockinsite_app    : Frontend + Backend Flask Application (Port 5000)
+    - stockinsite_db     : MySQL Database (Port 3306)
+    - stockinsite_ollama : Ollama LLM Service (Port 11434)
+
+--------------------------------------------------------
+2. DATABASE DETAILS (stockinsite_db)
+--------------------------------------------------------
+* Database Name : stockinsite_db
+* Container Name: stockinsite_db
+* MySQL Port    : 3306
+* DB User       : root
+* DB Password   : Aru.8967
+* Persistent Vol: stockinsite_db_data
+* Initialization: Auto-loaded via db_files/init.sql into /docker-entrypoint-initdb.d/init.sql
+
+* Table Structures:
+
+  a) users:
+     - id          : INT PRIMARY KEY AUTO_INCREMENT
+     - u_name      : VARCHAR(255)
+     - u_password  : VARCHAR(255)
+
+  b) companies: (Pre-loaded with 2,379 NSE companies from db_files/companies_list.json)
+     - c_id        : INT PRIMARY KEY
+     - c_symbol    : VARCHAR(255)
+     - c_name      : VARCHAR(255)
+     - marketcap   : BIGINT
+
+  c) watchlist:
+     - c_name      : VARCHAR(255)
+     - u_id        : INT (FK -> users.id ON DELETE CASCADE)
+     - share_price : INT
+     - c_symbol    : VARCHAR(255)
+
+  d) portfolio:
+     - u_id        : INT (FK -> users.id ON DELETE CASCADE)
+     - c_symbol    : VARCHAR(255)
+     - quantity    : INT
+     - bought_price: INT
+
+  e) compare:
+     - u_id        : INT (FK -> users.id ON DELETE CASCADE)
+     - c_symbol    : VARCHAR(255)
+
+--------------------------------------------------------
+3. OLLAMA LLM SERVICE DETAILS (stockinsite_ollama)
+--------------------------------------------------------
+* Container Name: stockinsite_ollama
+* Service Port  : 11434
+* Model Used    : Gemma (gemma3:4b-it-q4_K_M)
+* Volume        : ollama_data (External volume preserving model data)
+* Ollama API    : http://stockinsite_ollama:11434/api/chat
+
+========================================================
+
 ================ To start the project ====================
 
 * open git bash

@@ -1,44 +1,17 @@
-DB_CONT="stockinsite"
-OLLAMA_CONT="stockinsite_ollama"
+#!/bin/bash
 
-echo "Starting the project"
-sleep 2
+echo "Starting the Stockinsite project using Docker Compose..."
+sleep 1
 
-echo "Downloading the python dependencies"
-sleep 2
-
-echo "python requirments are installed"
-
-
-DB_STATUS=$(docker ps -a --filter "name=${DB_CONT}$" --format "{{.Names}}")
-OLLAMA_STATUS=$(docker ps -a --filter "name=${OLLAMA_CONT}$" --format "{{.Names}}")
-
-# ========================= Database staring process =================================
-
-if [ "$DB_STATUS" == "$DB_CONT" ]; then
-  echo "$DB_STATUS container found starting the container"
-  docker start "$DB_CONT"
-  sleep 3
-  echo "$DB_CONT container started"
+if command -v docker-compose &> /dev/null; then
+    docker-compose up -d
+elif docker compose version &> /dev/null; then
+    docker compose up -d
+else
+    echo "Error: Docker Compose is not installed."
+    exit 1
 fi
 
-# ========================= Database staring process =================================
-
-
-if [ "$OLLAMA_STATUS" == "$OLLAMA_CONT" ]; then
-  echo "$OLLAMA_STATUS container found starting the container"
-  docker start "$OLLAMA_CONT"
-  sleep 3
-  echo "$OLLAMA_CONT container started"
-fi
-
-sleep 5
-
-echo "Starting the application Server"
-sleep 2
-
-nohup python wsig.py > app.log 2>&1 &
-
-sleep 10
-echo " application Server started "
-echo " CMD :- tail -f app.log "
+echo "Stockinsite services are starting up!"
+echo "Application URL: http://localhost:5000"
+echo "To view logs, run: docker-compose logs -f stockinsite_app"
