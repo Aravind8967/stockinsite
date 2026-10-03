@@ -23,9 +23,9 @@ cd stockinsite
 
 docker-compose up -d --build
 
-docker-copose up -d
+docker-compose up -d
 
-docker-copose down
+docker-compose down
 
 ```
 
